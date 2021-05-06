@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
+    <title>WABiz &ndash; Aplicativos para Delivery </title>
+    <link rel="stylesheet" href="pure-min.css">
+    <link rel="stylesheet" href="grids-responsive-min.css">
+    <link rel="stylesheet" href="styles.css?d=202102181911">
+    <script>
+        window.FontAwesomeKitConfig = {
+            "asyncLoading": {
+                "enabled": false
+            },
+            "autoA11y": {
+                "enabled": true
+            },
+            "baseUrl": "https://ka-f.fontawesome.com",
+            "baseUrlKit": "https://kit.fontawesome.com",
+            "detectConflictsUntil": null,
+            "iconUploads": {},
+            "id": 382119,
+            "license": "free",
+            "method": "css",
+            "minify": {
+                "enabled": true
+            },
+            "token": "4e92b6060a",
+            "v4FontFaceShim": {
+                "enabled": true
+            },
+            "v4shim": {
+                "enabled": true
+            },
+            "version": "5.15.2"
+        };
+        !function(t) {
+            "function" == typeof define && define.amd ? define("kit-loader", t) : t()
+        }((function() {
+            "use strict";
+            function t(e) {
+                return (t = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+                    return typeof t
+                }
+                : function(t) {
+                    return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t
+                }
+                )(e)
+            }
+            function e(t, e, n) {
+                return e in t ? Object.defineProperty(t, e, {
+                    value: n,
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0
+                }) : t[e] = n,
+                t
+            }
+            function n(t, e) {
+                var n = Object.keys(t);
+                if (Object.getOwnPropertySymbols) {
+                    var r = Object.getOwnPropertySymbols(t);
+                    e && (r = r.filter((function(e) {
+                        return Object.getOwnPropertyDescriptor(t, e).enumerable
+                    }
+                    ))),
+                    n.push.apply(n, r)
+                }
+                return n
+            }
+            function r(t) {
+                for (var r = 1; r < arguments.length; r++) {
+                    var o = null != arguments[r] ? arguments[r] : {};
+                    r % 2 ? n(Object(o), !0).forEach((function(n) {
+                        e(t, n, o[n])
+                    }
+                    )) : Object.getOwnPropertyDescriptors ? Object.defineProperties(t, Object.getOwnPropertyDescriptors(o)) : n(Object(o)).forEach((function(e) {
+                        Object.defineProperty(t, e, Object.getOwnPropertyDescriptor(o, e))
+                    }
+                    ))
+                }
+                return t
+            }
+            function o(t, e) {
+                return function(t) {
+                    if (Array.isArray(t))
+                        return t
+                }(t) || function(t, e) {
+                    if ("undefined" == typeof Symbol || !(Symbol.iterator in Object(t)))
+                        return;
+                    var n = []
+                    , r = !0
+                    , o = !1
+                    , i = void 0;
+                    try {
+                        for (var c, a = t[Symbol.iterator](); !(r = (c = a.next()).done) && (n.push(c.value),
+                        !e || n.length !== e); r = !0)
+                            ;
+                    } catch (t) {
+                        o = !0,
+                        i = t
+                    } finally {
+                        try {
+                            r || null == a.return || a.return()
+                        } finally {
+                            if (o)
+                                throw i
+                        }
+                    }
+                    return n
+                }(t, e) || function(t, e) {
+                    if (!t)
+                        return;
+                    if ("string" == typeof t)
+                        return i(t, e);
+                    var n = Object.prototype.toString.call(t).slice(8, -1);
+                    "Object" === n && t.constructor && (n = t.constructor.name);
+                    if ("Map" === n || "Set" === n)
+                        return Array.from(t);
+                    if ("Arguments" === n || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+                        return i(t, e)
+                }(t, e) || function() {
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")
+                }()
+            }
+            function i(t, e) {
+                (null == e || e > t.length) && (e = t.length);
+                for (var n = 0, r = new Array(e); n < e; n++)
+                    r[n] = t[n];
+                return r
+            }
+            function c(t, e) {
+                var n = e && e.addOn || ""
+                , r = e && e.baseFilename || t.license + n
+                , o = e && e.minify ? ".min" : ""
+                , i = e && e.fileSuffix || t.method
+                , c = e && e.subdir || t.method;
+                return t.baseUrl + "/releases/" + ("latest" === t.version ? "latest" : "v".concat(t.version)) + "/" + c + "/" + r + o + "." + i
+            }
+            function a(t) {
+                return t.baseUrlKit + "/" + t.token + "/" + t.id + "/kit-upload.css"
+            }
+            function u(t, e) {
+                var n = e || ["fa"]
+                , r = "." + Array.prototype.join.call(n, ",.")
+                , o = t.querySelectorAll(r);
+                Array.prototype.forEach.call(o, (function(e) {
+                    var n = e.getAttribute("title");
+                    e.setAttribute("aria-hidden", "true");
+                    var r = !e.nextElementSibling || !e.nextElementSibling.classList.contains("sr-only");
+                    if (n && r) {
+                        var o = t.createElement("span");
+                        o.innerHTML = n,
+                        o.classList.add("sr-only"),
+                        e.parentNode.insertBefore(o, e.nextSibling)
+                    }
+                }
+                ))
+            }
+            var f, s = function() {}, d = "undefined" != typeof global && void 0 !== global.process && "function" == typeof global.process.emit, l = "undefined" == typeof setImmediate ? setTimeout : setImmediate, h = [];
+            function m() {
+                for (var t = 0; t < h.length; t++)
+                    h[t][0](h[t][1]);
+                h = [],
+                f = !1
+            }
+            function p(t, e) {
+                h.push([t, e]),
+                f || (f = !0,
+                l(m, 0))
+            }
+            function y(t) {
+                var e = t.owner
+                , n = e._state
+                , r = e._data
+                , o = t[n]
+                , i = t.then;
+                if ("function" == typeof o) {
+                    n = "fulfilled";
+                    try {
+                        r = o(r)
+                    } catch (t) {
+                        w(i, t)
+                    }
+                }
+                b(i, r) || ("fulfilled" === n && v(i, r),
+                "rejected" === n && w(i, r))
+            }
+            function b(e, n) {
+                var r;
+                try {
+                    if (e === n)
+                        throw new TypeError("A promises callback cannot return that same promise.");
+                    if (n && ("function" == typeof n || "object" === t(n))) {
+                        var o = n.then;
+                        if ("function" == typeof o)
+                            return o.call(n, (function(t) {
+                                r || (r = !0,
+                                n === t ? g(e, t) : v(e, t))
+                            }
+                            ), (function(t) {
+                                r || (r = !0,
+                                w(e, t))
+                            }
+                            )),
+                            !0
+                    }
+                } catch (t) {
+                    return r || w(e, t),
+                    !0
+                }
+                return !1
+            }
+            function v(t, e) {
+                t !== e && b(t, e) || g(t, e)
+            }
+            function g(t, e) {
+                "pending" === t._state && (t._state = "settled",
+                t._data = e,
+                p(S, t))
+            }
+            function w(t, e) {
+                "pending" === t._state && (t._state = "settled",
+                t._data = e,
+                p(O, t))
+            }
+            function A(t) {
+                t._then = t._then.forEach(y)
+            }
+            function S(t) {
+                t._state = "fulfilled",
+                A(t)
+            }
+            function O(t) {
+                t._state = "rejected",
+                A(t),
+                !t._handled && d && global.process.emit("unhandledRejection", t._data, t)
+            }
+            function j(t) {
+                global.process.emit("rejectionHandled", t)
+            }
+            function E(t) {
+                if ("function" != typeof t)
+                    throw new TypeError("Promise resolver " + t + " is not a function");
+                if (this instanceof E == !1)
+                    throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
+                this._then = [],
+                function(t, e) {
+                    function n(t) {
+                        w(e, t)
+                    }
+                    try {
+                        t((function(t) {
+                            v(e, t)
+                        }
+                        ), n)
+                    } catch (t) {
+                        n(t)
+                    }
+                }(t, this)
+            }
+            E.prototype = {
+                constructor: E,
+                _state: "pending",
+                _then: null,
+                _data: void 0,
+                _handled: !1,
+                then: function(t, e) {
+                    var n = {
+                        owner: this,
+                        then: new this.constructor(s),
+                        fulfilled: t,
+                        rejected: e
+                    };
+                    return !e && !t || this._handled || (this._handled = !0,
+                    "rejected" === this._state && d && p(j, this)),
+                    "fulfilled" === this._state || "rejected" === this._state ? p(y, n) : this._then.push(n),
+                    n.then
+                },
+                catch: function(t) {
+                    return this.then(null, t)
+                }
+            },
+            E.all = function(t) {
+                if (!Array.isArray(t))
+                    throw new TypeError("You must pass an array to Promise.all().");
+                return new E((function(e, n) {
+                    var r = []
+                    , o = 0;
+                    function i(t) {
+                        return o++,
+                        function(n) {
+                            r[t] = n,
+                            --o || e(r)
+                        }
+                    }
+                    for (var c, a = 0; a < t.length; a++)
+                        (c = t[a]) && "function" == typeof c.then ? c.then(i(a), n) : r[a] = c;
+                    o || e(r)
+                }
+                ))
+            }
+            ,
+            E.race = function(t) {
+                if (!Array.isArray(t))
+                    throw new TypeError("You must pass an array to Promise.race().");
+                return new E((function(e, n) {
+                    for (var r, o = 0; o < t.length; o++)
+                        (r = t[o]) && "function" == typeof r.then ? r.then(e, n) : e(r)
+                }
+                ))
+            }
+            ,
+            E.resolve = function(e) {
+                return e && "object" === t(e) && e.constructor === E ? e : new E((function(t) {
+                    t(e)
+                }
+                ))
+            }
+            ,
+            E.reject = function(t) {
+                return new E((function(e, n) {
+                    n(t)
+                }
+                ))
+            }
+            ;
+            var _ = "function" == typeof Promise ? Promise : E;
+            function P(t, e) {
+                var n = e.fetch
+                , r = e.XMLHttpRequest
+                , o = e.token
+                , i = t;
+                return "URLSearchParams"in window ? (i = new URL(t)).searchParams.set("token", o) : i = i + "?token=" + encodeURIComponent(o),
+                i = i.toString(),
+                new _((function(t, e) {
+                    if ("function" == typeof n)
+                        n(i, {
+                            mode: "cors",
+                            cache: "default"
+                        }).then((function(t) {
+                            if (t.ok)
+                                return t.text();
+                            throw new Error("")
+                        }
+                        )).then((function(e) {
+                            t(e)
+                        }
+                        )).catch(e);
+                    else if ("function" == typeof r) {
+                        var o = new r;
+                        o.addEventListener("loadend", (function() {
+                            this.responseText ? t(this.responseText) : e(new Error(""))
+                        }
+                        ));
+                        ["abort", "error", "timeout"].map((function(t) {
+                            o.addEventListener(t, (function() {
+                                e(new Error(""))
+                            }
+                            ))
+                        }
+                        )),
+                        o.open("GET", i),
+                        o.send()
+                    } else {
+                        e(new Error(""))
+                    }
+                }
+                ))
+            }
+            function C(t, e, n) {
+                var r = t;
+                return [[/(url\("?)\.\.\/\.\.\/\.\./g, function(t, n) {
+                    return "".concat(n).concat(e)
+                }
+                ], [/(url\("?)\.\.\/webfonts/g, function(t, r) {
+                    return "".concat(r).concat(e, "/releases/v").concat(n, "/webfonts")
+                }
+                ], [/(url\("?)https:\/\/kit-free([^.])*\.fontawesome\.com/g, function(t, n) {
+                    return "".concat(n).concat(e)
+                }
+                ]].forEach((function(t) {
+                    var e = o(t, 2)
+                    , n = e[0]
+                    , i = e[1];
+                    r = r.replace(n, i)
+                }
+                )),
+                r
+            }
+            function F(t, e) {
+                var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : function() {}
+                , o = e.document || o
+                , i = u.bind(u, o, ["fa", "fab", "fas", "far", "fal", "fad", "fak"])
+                , f = Object.keys(t.iconUploads || {}).length > 0;
+                t.autoA11y.enabled && n(i);
+                var s = [{
+                    id: "fa-main",
+                    addOn: void 0
+                }];
+                t.v4shim.enabled && s.push({
+                    id: "fa-v4-shims",
+                    addOn: "-v4-shims"
+                }),
+                t.v4FontFaceShim.enabled && s.push({
+                    id: "fa-v4-font-face",
+                    addOn: "-v4-font-face"
+                }),
+                f && s.push({
+                    id: "fa-kit-upload",
+                    customCss: !0
+                });
+                var d = s.map((function(n) {
+                    return new _((function(o, i) {
+                        P(n.customCss ? a(t) : c(t, {
+                            addOn: n.addOn,
+                            minify: t.minify.enabled
+                        }), e).then((function(i) {
+                            o(U(i, r(r({}, e), {}, {
+                                baseUrl: t.baseUrl,
+                                version: t.version,
+                                id: n.id,
+                                contentFilter: function(t, e) {
+                                    return C(t, e.baseUrl, e.version)
+                                }
+                            })))
+                        }
+                        )).catch(i)
+                    }
+                    ))
+                }
+                ));
+                return _.all(d)
+            }
+            function U(t, e) {
+                var n = e.contentFilter || function(t, e) {
+                    return t
+                }
+                , r = document.createElement("style")
+                , o = document.createTextNode(n(t, e));
+                return r.appendChild(o),
+                r.media = "all",
+                e.id && r.setAttribute("id", e.id),
+                e && e.detectingConflicts && e.detectionIgnoreAttr && r.setAttributeNode(document.createAttribute(e.detectionIgnoreAttr)),
+                r
+            }
+            function k(t, e) {
+                e.autoA11y = t.autoA11y.enabled,
+                "pro" === t.license && (e.autoFetchSvg = !0,
+                e.fetchSvgFrom = t.baseUrl + "/releases/" + ("latest" === t.version ? "latest" : "v".concat(t.version)) + "/svgs",
+                e.fetchUploadedSvgFrom = t.uploadsUrl);
+                var n = [];
+                return t.v4shim.enabled && n.push(new _((function(n, o) {
+                    P(c(t, {
+                        addOn: "-v4-shims",
+                        minify: t.minify.enabled
+                    }), e).then((function(t) {
+                        n(I(t, r(r({}, e), {}, {
+                            id: "fa-v4-shims"
+                        })))
+                    }
+                    )).catch(o)
+                }
+                ))),
+                n.push(new _((function(n, o) {
+                    P(c(t, {
+                        minify: t.minify.enabled
+                    }), e).then((function(t) {
+                        var o = I(t, r(r({}, e), {}, {
+                            id: "fa-main"
+                        }));
+                        n(function(t, e) {
+                            var n = e && void 0 !== e.autoFetchSvg ? e.autoFetchSvg : void 0
+                            , r = e && void 0 !== e.autoA11y ? e.autoA11y : void 0;
+                            void 0 !== r && t.setAttribute("data-auto-a11y", r ? "true" : "false");
+                            n && (t.setAttributeNode(document.createAttribute("data-auto-fetch-svg")),
+                            t.setAttribute("data-fetch-svg-from", e.fetchSvgFrom),
+                            t.setAttribute("data-fetch-uploaded-svg-from", e.fetchUploadedSvgFrom));
+                            return t
+                        }(o, e))
+                    }
+                    )).catch(o)
+                }
+                ))),
+                _.all(n)
+            }
+            function I(t, e) {
+                var n = document.createElement("SCRIPT")
+                , r = document.createTextNode(t);
+                return n.appendChild(r),
+                n.referrerPolicy = "strict-origin",
+                e.id && n.setAttribute("id", e.id),
+                e && e.detectingConflicts && e.detectionIgnoreAttr && n.setAttributeNode(document.createAttribute(e.detectionIgnoreAttr)),
+                n
+            }
+            function L(t) {
+                var e, n = [], r = document, o = r.documentElement.doScroll, i = (o ? /^loaded|^c/ : /^loaded|^i|^c/).test(r.readyState);
+                i || r.addEventListener("DOMContentLoaded", e = function() {
+                    for (r.removeEventListener("DOMContentLoaded", e),
+                    i = 1; e = n.shift(); )
+                        e()
+                }
+                ),
+                i ? setTimeout(t, 0) : n.push(t)
+            }
+            function T(t) {
+                "undefined" != typeof MutationObserver && new MutationObserver(t).observe(document, {
+                    childList: !0,
+                    subtree: !0
+                })
+            }
+            try {
+                if (window.FontAwesomeKitConfig) {
+                    var x = window.FontAwesomeKitConfig
+                    , M = {
+                        detectingConflicts: x.detectConflictsUntil && new Date <= new Date(x.detectConflictsUntil),
+                        detectionIgnoreAttr: "data-fa-detection-ignore",
+                        fetch: window.fetch,
+                        token: x.token,
+                        XMLHttpRequest: window.XMLHttpRequest,
+                        document: document
+                    }
+                    , D = document.currentScript
+                    , N = D ? D.parentElement : document.head;
+                    (function() {
+                        var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}
+                        , e = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
+                        return "js" === t.method ? k(t, e) : "css" === t.method ? F(t, e, (function(t) {
+                            L(t),
+                            T(t)
+                        }
+                        )) : void 0
+                    }
+                    )(x, M).then((function(t) {
+                        t.map((function(t) {
+                            try {
+                                N.insertBefore(t, D ? D.nextSibling : null)
+                            } catch (e) {
+                                N.appendChild(t)
+                            }
+                        }
+                        )),
+                        M.detectingConflicts && D && L((function() {
+                            D.setAttributeNode(document.createAttribute(M.detectionIgnoreAttr));
+                            var t = function(t, e) {
+                                var n = document.createElement("script");
+                                return e && e.detectionIgnoreAttr && n.setAttributeNode(document.createAttribute(e.detectionIgnoreAttr)),
+                                n.src = c(t, {
+                                    baseFilename: "conflict-detection",
+                                    fileSuffix: "js",
+                                    subdir: "js",
+                                    minify: t.minify.enabled
+                                }),
+                                n
+                            }(x, M);
+                            document.body.appendChild(t)
+                        }
+                        ))
+                    }
+                    )).catch((function(t) {
+                        console.error("".concat("Font Awesome Kit:", " ").concat(t))
+                    }
+                    ))
+                }
+            } catch (t) {
+                console.error("".concat("Font Awesome Kit:", " ").concat(t))
+            }
+        }
+        ));
+
+    </script>
+
+</head>
+<body>
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">
+            <img src="logo_wabiz.png" width="200" />
+        </a>
+
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href="https://wabiz.com.br" class="pure-menu-link">Visite nosso site</a></li>
+            <li class="pure-menu-item"><a href="https://wa.me/5511986598313" target="_blank" class="pure-menu-link">Contato</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="splash-container">
+    <div class="splash">
+        <div class="splash-head">
+            <p class="splash-subhead">Seu restaurante
+                merece as
+                melhores tecnologias!</p>
+            <h1>APLICATIVO PRÓRPIO PARA DELIVERY</h1>
+            <p class="splash-subhead">
+                Já ajudamos milhares de estabelecimentos a aumentarem suas vendas desde R$ 10 mil até R$ 500 mil por mês.
+            </p>
+            <p>
+                <a href="https://wa.me/5511986598313" class="pure-button pure-button-primary">
+                    <img src="whatsapp_logo.webp" style="width: 24px; vertical-align: middle;" />
+                    FAÇA UM TEST DRIVE
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="content">
+        <h2 class="content-head is-center">Confira o que um aplicativo próprio da WABiz pode te oferecer</h2>
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-star"></i>
+                    Personalizado
+                </h3>
+                <p>
+                    Criamos o aplicativo com a identidade visual do seu estabelecimento. Seu cliente se sente mais confiável em pedir onde já conhece e além disso você reforça ainda mais a sua marca.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-hand-holding-usd"></i>
+                    Não pague comissões!
+                </h3>
+                <p>
+                    Com nosso aplicativo você se livra de comissões sobre seus pedidos. Trabalhando estratégicamente, você consegue reverter seus clientes a trabalharem com seu prórprio aplicativo. Cobramos uma mensalidade fixa, sendo assim, você sabe quanto investe em tecnologia para seu próprio crescimento e deixa de pagar comissões muitas vezes abusivas para os marketplaces.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-motorcycle"></i>
+                    <i class="fa fa-people-carry"></i>
+                    Para Delivery ou Retirada
+                </h3>
+                <p>
+                    O cliente pode escolher pelo Delivery ou para retirar em seu estabelecimento.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-android"></i>
+                    <i class="fa fa-apple"></i>
+                    Loja de aplicativos
+                </h3>
+                <p>
+                    Seu aplicativo estará disponível para Android (Play Store) e iOS (App Store - *Nós te ajudaremos a criar sua conta na Apple*)
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-mobile-alt"></i>
+                    Web App
+                </h3>
+                <p>
+                    Você também pode optar por ter a versão web do seu aplicativo. O usuário pode acessar de qualquer lugar sem ter que instalar o aplicativo. Este recurso fica fantástico combinado com o uso do WhatsApp Business. Você agilizará muito seu atendimento!
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-whatsapp"></i>
+                    WhatsApp
+                </h3>
+                <p>
+                    O WhatsApp é uma ferramenta incrível e de fácil acesso para todos os clientes. Combine o WhatsApp e o aplicativo próprio de delivery e tenha um canal automatizado para atender mais pedidos.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-desktop"></i>
+                    <i class="fa fa-chart-line"></i>
+                    Painéis de Gestão
+                </h3>
+                <p>
+                    Você receberá seus pedidos e gerenciará os dados do seu aplicativo através de nossos painéis. Além disso, você tem acesso a relatórios que te darão uma visão profunda sobre seu negócio que vai te dar a oportunidade de criar estratégias para aumentar suas vendas.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-print"></i>
+                    Impressão
+                </h3>
+                <p>
+                    Imprima automaticamente os pedidos assim que eles chegarem. Escolha entre as vias principais, de entrega e cozinha. Tudo bem organizado e de fácil visualização para não ter erros.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-bell"></i>
+                    Notificações via Push
+                </h3>
+                <p>
+                    Seu cliente recebe para cada alteração de status do pedido uma mensagem via Push. Você também pode mandar mensagens promocionais para todos os clientes a qualquer momento criando uma dinâmica para aumentar mais as suas vendas.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-tag"></i>
+                    <i class="fa fa-percentage"></i>
+                    Promoções e Cupons de Desconto
+                </h3>
+                <p>
+                    Ofereça aos seus clientes diversos tipos de promoções em cima dos seus produtos. Você pode usar cupons de desconto para incentivar seus clientes a comprarem mais.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-trophy"></i>
+                    Programa de Fidelidade
+                </h3>
+                <p>
+                    Fidelizar um cliente é algo essencial para um estabelecimento. Crie seu programa de fidelidade e faça com que seu cliente sempre esteja comprando de você.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-credit-card"></i>
+                    Pagamento Online
+                </h3>
+                <p>
+                    Dê mais conforto para seu cliente fazer o pedido com a opção de pagar online. Além de mais prático, você tem mais garantia que o pedido será pago.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-eye"></i>
+                    Imagens dos produtos
+                </h3>
+                <p>
+                    Uma imagem vale mais que mil palavras. Venda mais com fotos de seus produtos.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-project-diagram"></i>
+                    Integração com outros sistemas
+                </h3>
+                <p>
+                    Já temos mais de 30 sistemas integrados com nosso aplicativo. É muito mais eficiência para seu processo e você se preocupa apenas em produzir.
+                </p>
+            </div>
+        </div>
+
+        <p style="text-align: center;">
+            <a href="https://wa.me/5511986598313" class="pure-button pure-button-primary big-button">
+                <img src="whatsapp_logo.webp" style="width: 24px; vertical-align: middle;" />
+                GOSTEI!<br /> QUERO MAIS INFORMAÇÕES
+            </a>
+        </p>
+
+    </div>
+
+    <div class="ribbon l-box-lrg pure-g">
+        <div class="is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+            <video style="max-width: 100%;" autoplay="autoplay" loop="loop" >
+                <source src="apps_template.webm" type='video/webm; codecs="vp8, vorbis"' />
+            </video>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+            <h2 class="content-head content-head-ribbon">Inove para vender mais!</h2>
+
+            <p>É muito mais prático para seu cliente fazer um pedido pelo Smartphone ou tablet.</p>
+            <p>As pessoas estão habituadas a procurarem novas formas de agilizar sua rotina para que cada vez mais ela tenha tempo para fazer coisas mais importantes.</p>
+            <p>Com a era da mobilidade, sua empresa será como uma extensão do corpo do seu cliente e andará junto dele quase o dia inteiro.</p>
+            <p>Um aplicativo além de facilitar a vida do seu cliente, também agilizará o processo de um pedido dentro de seu restaurante.</p>
+            <p>É ideal para: Pizzarias, Lanchonetes, Pastelarias, Hamburguerias, Marmitex, Comida Oriental, enfim, Restaurantes em Geral ou qualquer segmento que tenha o mesmo processo de pedidos.</p>
+            <p style="text-align: center;">
+                <a href="https://wa.me/5511986598313" class="pure-button pure-button-secondary big-button">
+                    <img src="whatsapp_logo.webp" style="width: 24px; vertical-align: middle;" />
+                    ENTRE EM CONTATO AGORA MESMO!
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="content" style="margin-bottom: 150px">
+        <h2 class="content-head is-center">Este é o principal motivo pelo qual a Wabiz existe.<br />Garantir o melhor resultado para seu negócio e seus clientes</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/eK2Cj5V3I54" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 100%;
+        max-width: 560px;
+        margin: auto;
+        display: block;"></iframe>
+        <h2 class="content-head is-center">Confira alguns depoimentos reais de clientes</h2>
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <h3 class="content-subhead">Danilo, Pizzaria Donana - Corumbá/MS</h3>
+                <p>
+                    Equipe da WAbiz...Inicialmente agradeço a parceria (acredito que mais de 4 anos) firmada entre Donana e a WABiz, 
+                    já que, graças ao app próprio, não sou refém dos apps de marketplaces da vida. Com a integração com meu sistema de ERP/Frente de Caixa
+                    tive um ganho fantástico de produção (já que digitava manualmente todos os pedidos do WAbiz para meu sistema na época).
+                    O programa de pontos está rodando, tenho muitos clientes fiéis por conta da pontuação. E o cupom me ajuda em dias de movimento tranquilo
+                    a dar uma "animada" no cliente. Dito isto, deixando claro a importância do app de vocês em minha empresa.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <h3 class="content-subhead">Davi Rosseto - Maximus Pizzas - Jundiaí/SP</h3>
+                <p>Se vocês acham que um aplicativo próprio para sua pizzaria não dará resultado esperado, estão perdendo tempo e dinheiro. Estou muito contente com o trabalho realizado pela WABiz. Minhas vendas aumentaram 70%. O suporte é espetacular, o aplicativo é fácil e prático.<br>
+                        Parabéns WABiz, foi o melhor investimento que fiz para o meu negócio.<br>
+                        Maximu's Pizzas agradece!</p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <h3 class="content-subhead">Daniel - Oba Oba Foods - Rede de Lojas em Minas Gerais</h3>
+                <p>Muito bacana! Eu também uso o sistema WAbiz, só que minhas vendas são 99% via aplicativo. Hoje trabalho com promoções exclusivas pelo aplicativo e preços normais via telefone</p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <h3 class="content-subhead">Poliana - Birutas Delivery - Inhapim/MG</h3>
+                <p>Nota 1000 o aplicativo. Tem me ajudado muito. Já estou recebendo 40% dos pedidos, agilizando muito nosso trabalho</p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <h3 class="content-subhead">Adenilson Pizzaiolo - Pizzaria do Pizza - Mongaguá/SP</h3>
+                <p>Mais de 50% dos meus pedidos vêm do aplicativo WAbiz</p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                <h3 class="content-subhead">Açaí da Camilly - Matão/SP</h3>
+                <p>Eu tenho! Realmente é muito bom!!!</p>
+            </div>
+            
+        </div>
+        <p style="text-align: center;">
+            <a href="https://wa.me/5511986598313" class="pure-button pure-button-secondary big-button">
+                <img src="whatsapp_logo.webp" style="width: 24px; vertical-align: middle;" />
+                CLIQUE AQUI E SOLICITE UMA DEMONSTRAÇÃO
+            </a>
+        </p>
+        <hr />
+        <div class="is-center">
+            <h2 class="content-head is-center">
+                CONFIRA MAIS INFORMAÇÔES EM NOSSO SITE E EM NOSSO BLOG
+            </h2>
+            <h3>
+                <a href="https://wabiz.com.br" target="_blank">wabiz.com.br</a>
+            </h3>
+        </div>
+
+    </div>
+
+    <div class="footer l-box is-center">
+        <a href="https://wa.me/5511986598313" target="_blank">
+            <div style="display: inline-block;">Entre em contato agora mesmo!</div>
+            <div style="display: inline-block;"> Estamos te esperando no Whatsapp: (11) 98659-8313</div>
+        </a> 
+        <img src="whatsapp_logo.webp" style="width: 24px; vertical-align: middle;" />
+    </div>
+
+</div>
+
+<div id="fb-root"></div>
+<!--
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0&appId=907292152635265&autoLogAppEvents=1"></script>
+
+<div class="fb-page" data-href="https://www.facebook.com/wabiznegociosinteligentes" data-tabs="timeline" data-width="450" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/wabiznegociosinteligentes" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/wabiznegociosinteligentes">WAbiz - Negócios Inteligentes</a></blockquote></div>
+-->
+
+<!-- Global site tag (gtag.js) - Google Ads: 949566628 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-949566628"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-949566628');
+</script>
+
+<script>
+
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-77096542-1', 'auto');
+		ga('require', 'linkid', 'linkid.js');
+		ga('send', 'pageview');
+
+
+  <!-- Facebook Pixel Code Elison-->
+
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2393615217553142');
+  fbq('track', 'PageView');
+
+<!-- End Facebook Pixel Code -->
+
+	function trackContact(url) {
+	var callback = function () {
+		if (typeof(url) != 'undefined') {
+			window.open(url);
+		}
+	};
+	
+	gtag('event', 'conversion', {
+		'send_to': 'AW-949566628/UHnACLTk0osBEKT55MQD',
+		'event_callback': callback
+	});
+
+	
+	fbq('track', 'Contact');
+	
+	return false;
+}
+</script>
+
+</body>
+</html>
