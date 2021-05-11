@@ -177,115 +177,7 @@
             </div>
         </div>
         
-        <script>
-            
-
-            (function ($) { 
-                $(document).ready(function () { 
-                    var phoneMask = IMask(
-                        document.getElementById('form_tel'), 
-                        {
-                            mask: '(00) 00000-0000'
-                        }
-                    );
-
-                    
-                    var jq14 = jQuery.noConflict(true); 
-                    var submitFunction = null;
-
-                    function isEmail(email) {
-                        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-                        return regex.test(email);
-                    }
-                    
-                    submitFunction = function(){
-
-                        var invalidFormMessage = $("#invalidFormMessage");
-                        var fields = $(".fields");
-                        var loading = $(".loading");
-                        invalidFormMessage.innerText = '';
-                        invalidFormMessage.hide();
-                        fields.hide();
-                        loading.show();                        
-                        
-                        var href = $(location).attr('href'); 
-                        try {
-                            var name = document.getElementById('form_name').value;
-                            if (name.trim().length < 3){ 
-                                throw { field: "form_name", message: "Por favor, informe seu nome" };
-                            }
-
-                            var phone = document.getElementById('form_tel').value;
-                            if (phone.trim() == ""){ 
-                                throw { field: "form_phone", message: "Por favor, informe seu telefone" };
-                            }
-                            else {
-                                if(phone.length != 15) {
-                                    throw { field: "form_phone", message: "Por favor, informe seu telefone corretamente" };
-                                }
-                            }
-
-                            var email = document.getElementById('form_mail').value;
-                            if (!isEmail(email)){ 
-                                throw { field: "form_email", message: "Por favor, informe seu e-mail" };
-                            }
-
-                            var segment = document.getElementById('form_segment').value;
-
-                            //var store = document.getElementById('form_store').value;
-                            var store = name;
-                            
-                        } catch (e) {
-                            fields.show();
-                            loading.hide();
-                            invalidFormMessage.text(e.message);
-                            invalidFormMessage.show();
-                            return;
-                        }
-                        
-                        
-                        var opps= { 'oportunidades': [ { 'titulo': 'Lead do Site', 'valor': 0, 'codigo_vendedor': '16343', 'codigo_metodologia': '5341', 'codigo_canal_venda': '77430', 'personalizados': [ ], 'empresa': { 'nome': store, 'cnpj': '', 'ie': '', 'segmento': segment, 'endereco_completo': { 'logradouro': '', }, 'personalizados': [ ] } , 'contato': { 'nome': name, 'email': email, 'telefone1': phone, 'telefone2': '', 'cargo': '', 'cpf': '', 'personalizados': [ ] }, } , ] };
-
-                        
-                        $.ajax({ 
-                            type: 'POST', 
-                            url: "https://app.funildevendas.com.br/api/Opportunity?IntegrationKey=c8cbef34-9d30-48fc-8fee-f6ae17f21de2", 
-                            dataType: "json", 
-                            contentType: 'application/json',
-                            data: JSON.stringify(opps), 
-                            async: false, 
-                            success: function (data) {
-                                $.ajax({ 
-                                    url : "https://leads.funildevendas.com.br/Formulario/Record.asp",
-                                    type : 'POST', 
-                                    data : { 'code_user':16343, 'href': href, 'code_funil':5341, 'code_channel':77430, 'IntegrationKey': 'c8cbef34-9d30-48fc-8fee-f6ae17f21de2', 'emailNotification': 'comercial@wabiz.com.br', 'nome': name, 'email': email,'telefone1': phone,'organizacao': store, 'TituloOportunidade':'Lead do Site', 'DataForm': JSON.stringify(opps), 
-                                    }, 
-                                    success : function(result){ 
-                                        location.href="obrigado.html";
-                                    },
-                                    error: function() {
-                                        fields.show();
-                                        loading.hide();
-                                        invalidFormMessage.text("Não foi possível enviar o formulário!");
-                                        invalidFormMessage.show();
-                                        return;
-                                    }
-                                }); 
-                            },
-                            error: function() {
-                                fields.show();
-                                loading.hide();
-                                invalidFormMessage.text("Não foi possível enviar o formulário!");
-                                invalidFormMessage.show();
-                                return;
-                            } 
-                        }); 
-                        
-                        
-                    }; 
-                });
-            }(jq14)); 
-        </script>
+        
         </form></div>
      </div></div></div><div class="wpb_animate_when_almost_visible wpb_fadeInRight fadeInRight wpb_column vc_column_container vc_col-sm-6 vc_row-5cf521c554536 wpb_start_animation animated vc_custom_1581367663608"></div></div><div class="vc_row wpb_row vc_row-fluid vc_custom_1560323207903 vc_row-5cf51e4c40f59 vc_row-o-content-top vc_row-flex"><div class="wpb_animate_when_almost_visible wpb_fadeInLeft fadeInLeft wpb_column vc_column_container vc_col-sm-6 vc_row-5cff37f8db4a8 wpb_start_animation animated"><div class="vc_column-inner"><div class="wpb_wrapper">
      <div class="wpb_single_image wpb_content_element vc_align_center wpb_animate_when_almost_visible wpb_left-to-right left-to-right wpb_start_animation animated">
@@ -589,6 +481,115 @@
         src="https://www.facebook.com/tr?id=481343199843483&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Facebook Pixel Code -->
+    
+    <script>
+            
 
+        (function ($) { 
+            $(document).ready(function () { 
+                var phoneMask = IMask(
+                    document.getElementById('form_tel'), 
+                    {
+                        mask: '(00) 00000-0000'
+                    }
+                );
+
+                
+                var jq14 = jQuery.noConflict(true); 
+                var submitFunction = null;
+
+                function isEmail(email) {
+                    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                    return regex.test(email);
+                }
+                
+                submitFunction = function(){
+
+                    var invalidFormMessage = $("#invalidFormMessage");
+                    var fields = $(".fields");
+                    var loading = $(".loading");
+                    invalidFormMessage.innerText = '';
+                    invalidFormMessage.hide();
+                    fields.hide();
+                    loading.show();                        
+                    
+                    var href = $(location).attr('href'); 
+                    try {
+                        var name = document.getElementById('form_name').value;
+                        if (name.trim().length < 3){ 
+                            throw { field: "form_name", message: "Por favor, informe seu nome" };
+                        }
+
+                        var phone = document.getElementById('form_tel').value;
+                        if (phone.trim() == ""){ 
+                            throw { field: "form_phone", message: "Por favor, informe seu telefone" };
+                        }
+                        else {
+                            if(phone.length != 15) {
+                                throw { field: "form_phone", message: "Por favor, informe seu telefone corretamente" };
+                            }
+                        }
+
+                        var email = document.getElementById('form_mail').value;
+                        if (!isEmail(email)){ 
+                            throw { field: "form_email", message: "Por favor, informe seu e-mail" };
+                        }
+
+                        var segment = document.getElementById('form_segment').value;
+
+                        //var store = document.getElementById('form_store').value;
+                        var store = name;
+                        
+                    } catch (e) {
+                        fields.show();
+                        loading.hide();
+                        invalidFormMessage.text(e.message);
+                        invalidFormMessage.show();
+                        return;
+                    }
+                    
+                    
+                    var opps= { 'oportunidades': [ { 'titulo': 'Lead do Site', 'valor': 0, 'codigo_vendedor': '16343', 'codigo_metodologia': '5341', 'codigo_canal_venda': '77430', 'personalizados': [ ], 'empresa': { 'nome': store, 'cnpj': '', 'ie': '', 'segmento': segment, 'endereco_completo': { 'logradouro': '', }, 'personalizados': [ ] } , 'contato': { 'nome': name, 'email': email, 'telefone1': phone, 'telefone2': '', 'cargo': '', 'cpf': '', 'personalizados': [ ] }, } , ] };
+
+                    
+                    $.ajax({ 
+                        type: 'POST', 
+                        url: "https://app.funildevendas.com.br/api/Opportunity?IntegrationKey=c8cbef34-9d30-48fc-8fee-f6ae17f21de2", 
+                        dataType: "json", 
+                        contentType: 'application/json',
+                        data: JSON.stringify(opps), 
+                        async: false, 
+                        success: function (data) {
+                            $.ajax({ 
+                                url : "https://leads.funildevendas.com.br/Formulario/Record.asp",
+                                type : 'POST', 
+                                data : { 'code_user':16343, 'href': href, 'code_funil':5341, 'code_channel':77430, 'IntegrationKey': 'c8cbef34-9d30-48fc-8fee-f6ae17f21de2', 'emailNotification': 'comercial@wabiz.com.br', 'nome': name, 'email': email,'telefone1': phone,'organizacao': store, 'TituloOportunidade':'Lead do Site', 'DataForm': JSON.stringify(opps), 
+                                }, 
+                                success : function(result){ 
+                                    location.href="obrigado.html";
+                                },
+                                error: function() {
+                                    fields.show();
+                                    loading.hide();
+                                    invalidFormMessage.text("Não foi possível enviar o formulário!");
+                                    invalidFormMessage.show();
+                                    return;
+                                }
+                            }); 
+                        },
+                        error: function() {
+                            fields.show();
+                            loading.hide();
+                            invalidFormMessage.text("Não foi possível enviar o formulário!");
+                            invalidFormMessage.show();
+                            return;
+                        } 
+                    }); 
+                    
+                    
+                }; 
+            });
+        }(jq14)); 
+    </script>
 
     </body></html>
