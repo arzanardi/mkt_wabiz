@@ -484,7 +484,8 @@
     
     <script>
             
-
+        var jq14 = jQuery.noConflict(true); 
+        
         (function ($) { 
             $(document).ready(function () { 
                 var phoneMask = IMask(
@@ -495,7 +496,7 @@
                 );
 
                 
-                var jq14 = jQuery.noConflict(true); 
+                
                 var submitFunction = null;
 
                 function isEmail(email) {
@@ -589,7 +590,7 @@
                     
                 }; 
             });
-        }()); 
+        }(jq14)); 
     </script>
 
     </body></html>
