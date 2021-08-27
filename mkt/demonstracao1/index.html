@@ -749,12 +749,14 @@
 				jQuery('.playVideoButton').css('opacity', '1');
 			});
 
+			player.on('timeupdate', function(data) {
+				if(data.seconds > 1350) {
+					jQuery('.firstButton').show();
+				}
+			});
+
 			jQuery('.playVideoButton').on('click', function() {
 				if(playing) player.pause(); else player.play();
-
-				setTimeout(() => {
-					jQuery('.firstButton').show();
-				}, 10000);
 			});
 			
 			
