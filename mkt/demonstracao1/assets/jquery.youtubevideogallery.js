@@ -33,7 +33,7 @@
                     innerHeight:688,
                     innerWidth:850,
                     newWindow: '(abrir em nova janela)',
-                    playButton: 'play-button-red@40.png',
+                    playButton: 'assets/play-button.png',
                     plugin:'self',
                     style:'',
                     title:'default',
