@@ -222,23 +222,76 @@
 	</div>
 </div>
 
-<div class="fl-module fl-module-rich-text fl-node-60273c309f04d fl-animation fl-fancy-shake fl-animated" data-node="60273c309f04d" data-animation-delay="1" data-animation-duration="1" style="animation-duration: 1s;">
-	<div class="fl-module-content fl-node-content">
-		<div class="fl-rich-text">
-	<p style="text-align: center;"><i class="fa fa-volume-up"></i>&nbsp;Clique em Play. Verifique se o som está ligado.&nbsp;Aguarde até 10 segundos para o vídeo carregar.</p>
-</div>
-	</div>
-</div>
 <div class="fl-module fl-module-video fl-node-601326b37e8a6" data-node="601326b37e8a6">
 	<div class="fl-module-content fl-node-content">
 		<style type="text/css">video {background-color: #ffffff !important;}
 </style>
 <div class="fl-video fl-embed-video">
-	<div class="playVideoButton" style="opacity: 0;">
-		<img src="assets/play-button.png" width="100%" />
-	</div>
-	<div class="fluid-width-video-wrapper" style="padding-top: 56.25%;">		
-		<iframe src="https://player.vimeo.com/video/592523983?title=0&byline=0&portrait=0&sidedock=0&controls=0&speed=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"  webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	<div class="fluid-width-video-wrapper">		
+		
+		<div class="embed-responsive embed-responsive-16by9 my-3">
+			<img id="unmute" class="embed-responsive-item" src="assets/unmute.png" style="z-index: 1;display: flex;" onclick="player.playVideo();document.getElementById('unmute').style.display='none';document.getElementById('pause').style.display='block';player.unMute();">
+			<img id="play" class="embed-responsive-item" src="assets/play.png" style="z-index: 1;display: none;" onclick="player.playVideo();document.getElementById('play').style.display='none';document.getElementById('pause').style.display='block';player.playVideo();">
+			<div id="pause" class="embed-responsive-item" style="z-index: 1; display: none;" onclick="player.pauseVideo();document.getElementById('play').style.display='flex';document.getElementById('pause').style.display='none';"></div>
+			<div id="player"></div>
+			<script>
+				var tag = document.createElement('script');
+				tag.src = "https://www.youtube.com/iframe_api";
+				var firstScriptTag = document.getElementsByTagName('script')[0];
+				firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+				var player;
+			
+				function onYouTubeIframeAPIReady() {
+					player = new YT.Player('player', {
+						videoId: 'sTdnc59jMK4',
+						playerVars: {
+							'autoplay': 0,
+							'controls': 0,
+							'rel': 0,
+							'disablekb': 0,
+							'modestbranding': 0,
+							'showinfo': 0
+						},
+						events: {
+							'onReady': onPlayerReady,
+							'onStateChange': onPlayerStateChange
+						}
+					});
+				}
+						
+				var timer;
+				var videotime;
+				var videoDuration;
+
+				function onPlayerReady(event) {
+					player.pauseVideo()
+					event.target.playVideo();
+					timer = setInterval(discoverTime, 1000);
+					videoDuration = parseInt(player.getDuration());
+				}
+				var done = false;
+
+				function onPlayerStateChange(event) {
+					if (event.data == YT.PlayerState.PLAYING && !done) {
+						done = true;
+					}
+				}
+
+				function discoverTime() {
+					if (player && player.getCurrentTime) {
+						videotime = parseInt(player.getCurrentTime());
+					}
+
+					if(videotime > 1225) {
+						jQuery('.firstButton').show();
+					}
+
+					if (videotime > videoDuration) {
+						clearInterval(timer);
+					}
+				}
+			</script>
+		  </div>
 	</div>
 </div>
 	</div>
@@ -736,32 +789,6 @@
 			jQuery("ul.youtube-video-gallery").youtubeVideoGallery(  );
 
 			
-			var iframe = document.querySelector('iframe');
- 			player = new Vimeo.Player(iframe);
-
-			player.on('loaded', function(e) {				
-				jQuery('.playVideoButton').css('opacity', '1');
-			});
-
-			player.on('play', function(e) {
-				playing = true;
-				jQuery('.playVideoButton').css('opacity', '0');
-			});
-
-			player.on('pause', function(e) {
-				playing = false;
-				jQuery('.playVideoButton').css('opacity', '1');
-			});
-
-			player.on('timeupdate', function(data) {
-				if(data.seconds > 1350) {
-					jQuery('.firstButton').show();
-				}
-			});
-
-			jQuery('.playVideoButton').on('click', function() {
-				if(playing) player.pause(); else player.play();
-			});
 			
 			
 		});
