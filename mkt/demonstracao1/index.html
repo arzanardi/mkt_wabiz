@@ -156,7 +156,26 @@
             }*/
                     </style>
         
-    <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+    <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>
+
+<!-- Facebook Pixel Code -->
+<script>
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window, document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '2393615217553142');
+	fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none"
+	src="https://www.facebook.com/tr?id=2393615217553142&ev=PageView&noscript=1"
+	/></noscript>
+	<!-- End Facebook Pixel Code -->
+</head>
         <body class="page-template-default page page-id-22934 fl-builder fl-builder-breakpoint-large" style="background-color: rgb(238, 238, 238);">
 
                 
@@ -628,20 +647,26 @@
 
 			<p>TODO e QUALQUER delivery de comida fora do lar e PRINCIPALMENTE para pessoas que estão iniciando no delivery ABSOLUTAMENTE DO ZERO e também para pessoas que já possuem o delivery há 1 ano, 5 anos ou 30 anos e querem AUMENTAR as suas vendas, sem aumentar os custos com estruturas de funcionários e PRINCIPALMENTE atender os seus clientes de forma MAIS RÁPIDA e com MAIS qualidade.</p>
 
-			<p>O que você tem a fazer agora é CLICAR IMEDIATAMENTE no botão abaixo e falar com a nossa equipe de especialistas, que lhe atenderá com a MÁXIMA agilidade para finalizar a contratação da plataforma para o seu delivery ou esclarecerá as SUAS DÚVIDAS, caso ainda exista alguma.</p>
+			<div class="lastCallToAction" style="display: none;">
+				<p>O que você tem a fazer agora é CLICAR IMEDIATAMENTE no botão abaixo e falar com a nossa equipe de especialistas, que lhe atenderá com a MÁXIMA agilidade para finalizar a contratação da plataforma para o seu delivery ou esclarecerá as SUAS DÚVIDAS, caso ainda exista alguma.</p>
 
-		
-			<div class="fl-module fl-module-button fl-node-5fd107c5bfae4" data-node="5fd107c5bfae4">
-				<div class="fl-module-content fl-node-content">
-					<div id="6127cb1b26d45" class="btn-6127cb1b26d45 fl-button-wrap fl-button-width-full fl-button-center fl-button-has-icon botao-fixo-6127cb1b26d45 ">
-						<a href="javascript:;" onclick="callSpecialist()" target="_self" class="fl-button " role="button">    
-							<img src="assets/whatsapp.png" width="48" />
-							<strong class="fl-button-text">QUERO FALAR COM UM ESPECIALISTA PELO WHATSAPP!</strong> 
-						</a>
+				<div class="fl-module fl-module-button fl-node-5fd107c5bfae4" data-node="5fd107c5bfae4">
+					<div class="fl-module-content fl-node-content">
+						<div id="6127cb1b26d45" class="btn-6127cb1b26d45 fl-button-wrap fl-button-width-full fl-button-center fl-button-has-icon botao-fixo-6127cb1b26d45 ">
+							<a href="javascript:;" onclick="callSpecialist()" target="_self" class="fl-button " role="button">    
+								<img src="assets/whatsapp.png" width="48" />
+								<strong class="fl-button-text">QUERO FALAR COM UM ESPECIALISTA PELO WHATSAPP!</strong> 
+							</a>
+						</div>
+
+
 					</div>
-
-
 				</div>
+
+			</div>
+
+			<div class="fl-module fl-module-button fl-node-5fd107c5bfae4 callToVideo" data-node="5fd107c5bfae4">
+				<p>Se ainda resta alguma dúvida, náo deixe de assitir o vídeo no ínicio desta página até o final para saber tudo sobre esta ferramenta que vai te ajudar no sucesso do seu negócio.</p>
 			</div>
 
 			<p>Quero te agradecer por estar comigo até aqui, um GRANDE ABRAÇO e espero que logo sejamos parceiros, pois queremos <b>levar O SEU NEGÓCIO para o próximo nível.</b></p>
@@ -788,8 +813,11 @@
 		jQuery(document).ready(function() {
 			jQuery("ul.youtube-video-gallery").youtubeVideoGallery(  );
 
-			
-			
+			setTimeout(function() {
+				jQuery('.lastCallToAction').show();
+				jQuery('.callToVideo').hide();
+				
+			}, 600000);		
 			
 		});
 
