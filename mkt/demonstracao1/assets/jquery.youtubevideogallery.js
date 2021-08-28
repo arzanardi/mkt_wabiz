@@ -14,6 +14,9 @@
 
     $.fn.extend({
         youtubeVideoGallery:function(options) {
+            var _w = window.innerWidth;
+            if(_w > 688) _w = 688;
+            var _h = (9 / 16) * _w;
             var version = '1.3.1',
                 isLegacyIE = (/\bMSIE [4|5|6|7]/.test(navigator.userAgent)),
                 defaults = {
@@ -30,8 +33,8 @@
                     },
                     forceLegacyIE:false,
                     iframeTemplate:'<iframe title="Youtube video player" id="youtube-videogallery-iframe" style="height:{options.innerHeight}px;width:{options.innerWidth}px;" frameborder="0" src="about:blank" />',
-                    innerHeight:688,
-                    innerWidth:850,
+                    innerHeight:_h,
+                    innerWidth:_w,
                     newWindow: '(abrir em nova janela)',
                     playButton: 'assets/play-button.png',
                     plugin:'self',
