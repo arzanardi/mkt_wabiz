@@ -170,6 +170,7 @@
 	'https://connect.facebook.net/en_US/fbevents.js');
 	fbq('init', '2393615217553142');
 	fbq('track', 'PageView');
+	fbq('track', 'ViewContent');
 	</script>
 	<noscript><img height="1" width="1" style="display:none"
 	src="https://www.facebook.com/tr?id=2393615217553142&ev=PageView&noscript=1"
@@ -832,6 +833,8 @@
 			if(!isMobile()) {
 				target = 'web'
 			}
+
+			fbq('track', 'Contact');
 
 			window.open('https://' + target + ".whatsapp.com/send?phone=5511986598313&text=Ol%C3%A1%2C%20acabei%20de%20assistir%20a%20demonstra%C3%A7%C3%A3o%20online%20sobre%20o%20aplicativo%20e%20gostaria%20de%20falar%20com%20um%20especialista%21")
 		}
