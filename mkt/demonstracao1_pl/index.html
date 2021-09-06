@@ -48,6 +48,24 @@
 	cursor: hand;
 	cursor: pointer;
  }
+ 
+.fullScreenVideoButton {
+ 	margin-left: -100px;
+    position: absolute;
+    margin-top: -53px;
+    background: #292929;
+    padding: 8px;
+    font-size: .9em;
+    color: #CCC;
+    width: 200px;
+    border-radius: 20px
+}
+
+.fullScreenVideoButton:hover, .fullScreenVideoButton:active {
+	color: #CCC;
+	text-decoration: none;
+}
+
 </style>
         <!-- end of imported css -->
 
@@ -245,7 +263,7 @@
 	<div class="fluid-width-video-wrapper">		
 		
 		<div class="embed-responsive embed-responsive-16by9 my-3">
-			<img id="unmute" class="embed-responsive-item" src="assets/unmute.png" style="z-index: 1;display: flex;" onclick="player.playVideo();document.getElementById('unmute').style.display='none';document.getElementById('pause').style.display='block';player.unMute();">
+			<img id="unmute" class="embed-responsive-item" src="assets/unmute.png" style="z-index: 1;display: flex;" onclick="player.playVideo();document.getElementById('unmute').style.display='none';document.getElementById('pause').style.display='block';player.unMute();fbq('track', 'PlayVideo');">
 			<img id="play" class="embed-responsive-item" src="assets/play.png" style="z-index: 1;display: none;" onclick="player.playVideo();document.getElementById('play').style.display='none';document.getElementById('pause').style.display='block';player.playVideo();">
 			<div id="pause" class="embed-responsive-item" style="z-index: 1; display: none;" onclick="player.pauseVideo();document.getElementById('play').style.display='flex';document.getElementById('pause').style.display='none';"></div>
 			<div id="player"></div>
@@ -298,13 +316,18 @@
 					}
 
 					if(videotime > 1225) {
+						fbq('track', 'ShowButton');
 						jQuery('.firstButton').show();
 					}
 
 					if (videotime > videoDuration) {
 						clearInterval(timer);
 					}
-				}
+				}				
+
+				function fullScreenVideo() {
+					player.getIframe().requestFullscreen();
+				}			
 			</script>
 		  </div>
 	</div>
@@ -330,7 +353,8 @@
 <div id="6127cb1a0eec3" class="fl-row fl-row-fixed-width fl-row-bg-color fl-node-5fb34dd119b9f" data-node="5fb34dd119b9f">
 	<div class="fl-row-content-wrap webp">
 						<div class="fl-row-content fl-row-fixed-width fl-node-content">
-
+							<div style="text-align: center;"><a href="javascript:;" onclick="fullScreenVideo()" class="fullScreenVideoButton">
+								<i class="fa fa-expand" style="margin-right: 10px;"></i> Ver vídeo em tela cheia</a></div>
 <div class="fl-module fl-module-button fl-node-5fd107c5bfae4 firstButton" data-node="5fd107c5bfae4" style="display: none;">
 	<div class="fl-module-content fl-node-content">
 		<div id="6127cb1b26d45" class="btn-6127cb1b26d45 fl-button-wrap fl-button-width-full fl-button-center fl-button-has-icon botao-fixo-6127cb1b26d45 ">

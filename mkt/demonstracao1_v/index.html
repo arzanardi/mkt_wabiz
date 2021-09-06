@@ -48,6 +48,24 @@
 	cursor: hand;
 	cursor: pointer;
  }
+
+.fullScreenVideoButton {
+ 	margin-left: -100px;
+    position: absolute;
+    margin-top: -53px;
+    background: #292929;
+    padding: 8px;
+    font-size: .9em;
+    color: #CCC;
+    width: 200px;
+    border-radius: 20px
+}
+
+.fullScreenVideoButton:hover, .fullScreenVideoButton:active {
+	color: #CCC;
+	text-decoration: none;
+}
+
 </style>
         <!-- end of imported css -->
 
@@ -304,6 +322,10 @@
 						clearInterval(timer);
 					}
 				}
+
+				function fullScreenVideo() {
+					player.getIframe().requestFullscreen();
+				}
 			</script>
 		  </div>
 	</div>
@@ -329,6 +351,8 @@
 <div id="6127cb1a0eec3" class="fl-row fl-row-fixed-width fl-row-bg-color fl-node-5fb34dd119b9f" data-node="5fb34dd119b9f">
 	<div class="fl-row-content-wrap webp">
 						<div class="fl-row-content fl-row-fixed-width fl-node-content">
+							<div style="text-align: center;"><a href="javascript:;" onclick="fullScreenVideo()" class="fullScreenVideoButton">
+								<i class="fa fa-expand" style="margin-right: 10px;"></i> Ver vídeo em tela cheia</a></div>
 
 
 <div class="fl-col-group fl-node-5fb34e7d68e92" data-node="5fb34e7d68e92">
