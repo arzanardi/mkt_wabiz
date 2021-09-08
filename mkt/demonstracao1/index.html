@@ -311,7 +311,7 @@
 				}
 
 				var buttonVisible = false;
-				
+
 				function discoverTime() {
 					if (player && player.getCurrentTime) {
 						videotime = parseInt(player.getCurrentTime());
@@ -319,7 +319,7 @@
 
 					if(videotime > 1225) {
 						if(!buttonVisible) {
-							fbq('track', 'ShowButton');
+							fbq('track', 'ViewFullVideo');
 							buttonVisible = true;
 						}
 						jQuery('.firstButton').show();
