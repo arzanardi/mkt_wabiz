@@ -310,13 +310,17 @@
 					}
 				}
 
+				var buttonVisible = false;
 				function discoverTime() {
 					if (player && player.getCurrentTime) {
 						videotime = parseInt(player.getCurrentTime());
 					}
 
 					if(videotime > 1225) {
-						fbq('track', 'ShowButton');
+						if(!buttonVisible) {
+							fbq('track', 'ShowButton');
+							buttonVisible = true;
+						}
 						jQuery('.firstButton').show();
 					}
 
