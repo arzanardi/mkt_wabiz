@@ -323,7 +323,7 @@
 							fbq('track', 'ViewFullVideo');
 							buttonVisible = true;
 						}
-						//FULL jQuery('.firstButton').show();
+						jQuery('.firstButton').show();
 					}
 
 					if (videotime > videoDuration) {
@@ -361,7 +361,7 @@
 						<div class="fl-row-content fl-row-fixed-width fl-node-content">
 							<div style="text-align: center;"><a href="javascript:;" onclick="fullScreenVideo()" class="fullScreenVideoButton">
 								<i class="fa fa-expand" style="margin-right: 10px;"></i> Ver vídeo em tela cheia</a></div>
-<div class="fl-module fl-module-button fl-node-5fd107c5bfae4 firstButton" data-node="5fd107c5bfae4">
+<div class="fl-module fl-module-button fl-node-5fd107c5bfae4 firstButton" data-node="5fd107c5bfae4" style="display: none">
 	<div class="fl-module-content fl-node-content">
 		<div id="6127cb1b26d45" class="btn-6127cb1b26d45 fl-button-wrap fl-button-width-full fl-button-center fl-button-has-icon botao-fixo-6127cb1b26d45 ">
 			<a href="javascript:;" onclick="callSpecialist()" target="_self" class="fl-button " role="button">    
