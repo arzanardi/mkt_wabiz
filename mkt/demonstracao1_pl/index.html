@@ -316,7 +316,8 @@
 						videotime = parseInt(player.getCurrentTime());
 					}
 
-					if(videotime > 1225) {
+					//if(videotime > 1225) {
+					if(videotime > 120) {
 						if(!buttonVisible) {
 							fbq('track', 'ViewFullVideo');
 							buttonVisible = true;
