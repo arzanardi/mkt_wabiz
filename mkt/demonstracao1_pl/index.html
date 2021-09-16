@@ -316,13 +316,18 @@
 						videotime = parseInt(player.getCurrentTime());
 					}
 
-					//if(videotime > 1225) {
+					if(videotime > 1225) {
+						if(!fullVideo) {
+							fbq('track', 'ViewFullVideo');
+							fullVideo = true;
+						}
+					}
+
 					if(videotime > 120) {
 						if(!buttonVisible) {
-							fbq('track', 'ViewFullVideo');
-							buttonVisible = true;
+							jQuery('.firstButton').show();
+							buttonVisible = true;							
 						}
-						jQuery('.firstButton').show();
 					}
 
 					if (videotime > videoDuration) {
