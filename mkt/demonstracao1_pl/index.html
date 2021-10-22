@@ -335,15 +335,14 @@ src="https://www.facebook.com/tr?id=261816209095126&ev=PageView&noscript=1"
 					}
 
 					//if(videotime > 1225) {
-					//if(videotime > 1140) {
-					if(videotime > 60) {
+					if(videotime > 1140) {
 						if(!fullVideo) {
 							fbq('track', 'ViewFullVideo');
 							fullVideo = true;
 						}
 					}
 
-					if(videotime > 120) {
+					if(videotime > 5) {
 						if(!buttonVisible) {
 							jQuery('.firstButton').show();
 							buttonVisible = true;							
@@ -566,7 +565,36 @@ src="https://www.facebook.com/tr?id=261816209095126&ev=PageView&noscript=1"
 			document.body.appendChild(img);
 			//<-- LINKEDIN
 
-			window.open('https://' + target + ".whatsapp.com/send?phone=5511986598313&text=Ol%C3%A1%2C%20acabei%20de%20assistir%20a%20demonstra%C3%A7%C3%A3o%20online%20sobre%20o%20aplicativo%20e%20gostaria%20de%20falar%20com%20um%20especialista%21%20%5BE%5D")
+			var urlParams = new URLSearchParams(window.location.search);
+			var channel = urlParams.get('c');
+
+			if(channel != "" && channel != null) {
+				
+				if(channel == "L") {
+					channel = "Linkedin";
+				}
+				else if(channel == "GB") {
+					channelb = "Guia%20do%20Hamburguer";
+				}
+				else if(channel == "F") {
+					channel = "Facebook"
+				}
+				else {
+					channel = "";
+				}
+			
+				if(channel != "") {
+					channel = "Eu%20vim%20do%20" + channel + "...";
+				}
+				
+			}
+			else {
+				channel = "";
+			}
+
+			var zapMessage = "Ol%C3%A1%2C%20acabei%20de%20assistir%20a%20demonstra%C3%A7%C3%A3o%20online%20sobre%20o%20aplicativo%20e%20gostaria%20de%20falar%20com%20um%20especialista%21%20" + channel;
+			
+			window.open('https://' + target + ".whatsapp.com/send?phone=5511986598313&text=" + zapMessage);
 		}
 
         </script>
