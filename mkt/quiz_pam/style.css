@@ -51,12 +51,13 @@ body {
 
 .btn {
 	border-radius: 10px;
-    padding: 5px 10px;
+    padding: 10px;
     font-size: 24px;
     background-color: #aeed5a;
     outline: none;
     border: none;
     color: #253b3b;
+	margin: 5px;
 }
 
 .black h1 {
@@ -95,7 +96,7 @@ body {
 	display: none;
 }
 
-input[type="text"] {
+input[type="text"], input[type="email"], input[type="tel"] {
 	padding: 10px;
     font-size: 1.5em;
     width: 100%;

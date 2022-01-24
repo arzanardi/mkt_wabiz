@@ -5,7 +5,8 @@
   <title>WABiz &ndash; Aplicativos para Delivery </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="adopt-website-id" content="30d03d81-f47f-4c43-b56b-df71b5f057ba" />
-  <script src="//tag.goadopt.io/injector.js?website_code=30d03d81-f47f-4c43-b56b-df71b5f057ba" class="adopt-injector"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!--<script src="//tag.goadopt.io/injector.js?website_code=30d03d81-f47f-4c43-b56b-df71b5f057ba" class="adopt-injector"></script>-->
   <link rel="stylesheet" href="style.css">
 </head>
 <body> 
@@ -17,7 +18,7 @@
           <p style="background: red; border-radius: 10px;  padding: 10px;">Não pague comissões sobre as vendas e nem por quantidade de pedidos e sim uma mensalidade fixa.</p>
         </div>
         <div class="answer">
-          <button id="continua-1" class="btn">VAMOS LÁ!<br />CLIQUE AQUI</button>
+          <button id="continua-1" class="btn">VAMOS LÁ!<br />⇨ CLIQUE AQUI ⇦</button>
         </div>
       </div>
       <div id="perfil" class="hide">
@@ -85,18 +86,17 @@
       </div>
       <div id="name" class="hide">
         <div class="question">
-          <h1>Seu nome</h1>
-          <p>Pronto! Para finalizar, só precisamos saber o seu nome</p>
+          <h1>Quase lá...</h1>
+          <p>Para finalizar, só precisamos de alguns dados para lhe atender melhor:</p>
         </div>
         <div class="answer">
-          <input type="text" id="name-answer" />
-          <button id="send" class="btn" onclick="send()">
-            <img src="whatsapp_logo.webp" width="32" style="vertical-align: middle;" />
-            ENVIAR VIA WHATSAPP
-          </button>
-          <p>Se não tiver como nos contatar via WhatsApp, não tem problema. </p>
-          <p> Este são nossos telefones:<br />(11) 98659-8313<br />(11) 4216-3417</p>
-          <p>E-mail:<br />comercial@wabiz.com.br</p>
+          <input type="text" id="name-answer" placeholder="NOME" />
+          <input type="email" id="email-answer" placeholder="E-MAIL" />
+          <input type="tel" id="phone-answer" placeholder="TELEFONE" />
+          <div style="color: #FFF; font-size: .8em;">Ao clicar para enviar você consente com nossa <a href="#" style="color: #d7ff5b">política de privacidade</a></div>
+          <button id="send" class="btn" onclick="send()" style="background-color: #eb551b; color: #FFF">
+            SOLICITAR DEMONSTRAÇÃO 
+          </button>          
         </div>
         <div class="footer">
           <a href="javascript:;" onclick="goBack('orders')">Voltar</a>
@@ -105,9 +105,17 @@
       <div id="end" class="hide">
         <div class="question">
           <h1>Obrigado!</h1>
-          <p>Agora um de nossos especialistas vai te ajudar com as informações que precisar.</p>
+          
+          <p>Suas informações foram enviadas e assim que um de nossos especialistas estiver disponível, você receberá o nosso contato lhe dar todas as informações que precisar.</p>
           <p>Fique a vontade, tire suas dúvidas, veja uma demonstração e saiba como um aplicativo próprio pode te ajudar a crescer muito com seu negócio.</p>
           <p>Sucesso!</p>
+          <br />
+          <button id="send" class="btn" onclick="zap()">
+            <img src="whatsapp_logo.webp" width="32" style="vertical-align: middle;" /> CHAMAR NO WHATSAPP 
+          </button> 
+          <br />
+          <p>Este também são nossos telefones:<br />(11) 98659-8313<br />(11) 4216-3417</p>
+          <p>E-mail:<br />comercial@wabiz.com.br</p>
         </div>
       </div>
     </div>
@@ -142,7 +150,7 @@
       ga('send', 'pageview');
   
   
-    <!-- Facebook Pixel Code Elison-->
+    //Facebook Pixel Code
   
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -155,7 +163,7 @@
     fbq('init', '2393615217553142');
     fbq('track', 'PageView');
   
-  <!-- End Facebook Pixel Code -->
+    //End Facebook Pixel Code 
   
     function trackContact(url) {
       var callback = function () {
