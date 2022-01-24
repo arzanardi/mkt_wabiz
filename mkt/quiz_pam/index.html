@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>WABiz &ndash; Aplicativos para Delivery </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="adopt-website-id" content="30d03d81-f47f-4c43-b56b-df71b5f057ba" />
+  <script src="//tag.goadopt.io/injector.js?website_code=30d03d81-f47f-4c43-b56b-df71b5f057ba" class="adopt-injector"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+  <div class="container">
+    <div class="black">
+      <div id="welcome">
+        <div class="question">
+          <h1>Você está no caminho certo para descobrir o melhor aplicativo que você pode ter para seu delivery!</h1>
+          <p style="background: red; border-radius: 10px;  padding: 10px;">Não pague comissões sobre as vendas e nem por quantidade de pedidos e sim uma mensalidade fixa.</p>
+        </div>
+        <div class="answer">
+          <button id="continua-1" class="btn">VAMOS LÁ!<br />CLIQUE AQUI</button>
+        </div>
+      </div>
+      <div id="perfil" class="hide">
+        <div class="question">
+          <h1>Perfil</h1>
+          <p>Em qual destes perfis você se encaixa?</p>
+        </div>
+        <div class="answer">
+          <button name="perfil-answer" id="perfil-1" class="btn">Tenho um estabelecimento</button>
+          <button name="perfil-answer" id="perfil-2" class="btn">Trabalho em casa</button>
+          <button name="perfil-answer" id="perfil-0" class="btn">Ainda não tenho um delivery</button>
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('welcome')">Voltar</a>
+        </div>
+      </div>
+      <div id="type" class="hide">
+        <div class="question">
+          <h1>Seu negócio</h1>
+          <p id="question-type">Qual o tipo de estabelecimento?</p>
+        </div>
+        <div class="answer">
+          <button name="type-answer" class="btn">Adega</button>
+          <button name="type-answer" class="btn">Bar</button>
+          <button name="type-answer" class="btn">Casa de Açaí</button>
+          <button name="type-answer" class="btn">Casa de Bolos</button>
+          <button name="type-answer" class="btn">Comida Árabe</button>
+          <button name="type-answer" class="btn">Comida Oriental</button>
+          <button name="type-answer" class="btn">Comida Variada</button>
+          <button name="type-answer" class="btn">Confeitaria</button>
+          <button name="type-answer" class="btn">Empório</button>
+          <button name="type-answer" class="btn">Esfiharia</button>
+          <button name="type-answer" class="btn">Hamburgueria</button>
+          <button name="type-answer" class="btn">Lanchonete</button>
+          <button name="type-answer" class="btn">Marmitex</button>
+          <button name="type-answer" class="btn">Mercado</button>
+          <button name="type-answer" class="btn">Padaria</button>
+          <button name="type-answer" class="btn">Pastelaria</button>
+          <button name="type-answer" class="btn">Pizzaria</button> 
+          <button name="type-answer" class="btn">Salgados</button>
+          <button name="type-answer" class="btn">Sorveteria</button>
+          <hr />
+          <button name="type-answer" class="btn">Outro</button>   
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('perfil')">Voltar</a>
+        </div>
+      </div>
+      <div id="orders" class="hide">
+        <div class="question">
+          <h1>Pedidos</h1>
+          <p>Quantos pedidos você recebe em média diariamente?</p>
+        </div>
+        <div class="answer">
+          <button name="orders-answer" id="orders-0" class="btn">Ainda não recebo pedidos</button>
+          <button name="orders-answer" id="orders-10" class="btn">Até 10</button>
+          <button name="orders-answer" id="orders-25" class="btn">De 10 a 25</button>
+          <button name="orders-answer" id="orders-50" class="btn">De 25 a 50</button>
+          <button name="orders-answer" id="orders-100" class="btn">De 50 a 100</button>
+          <button name="orders-answer" id="orders-101" class="btn">Mais de 100</button>
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('type')">Voltar</a>
+        </div>
+      </div>
+      <div id="name" class="hide">
+        <div class="question">
+          <h1>Seu nome</h1>
+          <p>Pronto! Para finalizar, só precisamos saber o seu nome</p>
+        </div>
+        <div class="answer">
+          <input type="text" id="name-answer" />
+          <button id="send" class="btn" onclick="send()">
+            <img src="whatsapp_logo.webp" width="32" style="vertical-align: middle;" />
+            ENVIAR VIA WHATSAPP
+          </button>
+          <p>Se não tiver como nos contatar via WhatsApp, não tem problema. </p>
+          <p> Este são nossos telefones:<br />(11) 98659-8313<br />(11) 4216-3417</p>
+          <p>E-mail:<br />comercial@wabiz.com.br</p>
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('orders')">Voltar</a>
+        </div>
+      </div>
+      <div id="end" class="hide">
+        <div class="question">
+          <h1>Obrigado!</h1>
+          <p>Agora um de nossos especialistas vai te ajudar com as informações que precisar.</p>
+          <p>Fique a vontade, tire suas dúvidas, veja uma demonstração e saiba como um aplicativo próprio pode te ajudar a crescer muito com seu negócio.</p>
+          <p>Sucesso!</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div id="fb-root"></div>
+  <!--
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0&appId=907292152635265&autoLogAppEvents=1"></script>
+  
+  <div class="fb-page" data-href="https://www.facebook.com/wabiznegociosinteligentes" data-tabs="timeline" data-width="450" data-height="250" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/wabiznegociosinteligentes" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/wabiznegociosinteligentes">WAbiz - Negócios Inteligentes</a></blockquote></div>
+  -->
+  
+  <!-- Global site tag (gtag.js) - Google Ads: 949566628 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-949566628"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'AW-949566628');
+  </script>
+  
+  <script>
+  
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-77096542-1', 'auto');
+      ga('require', 'linkid', 'linkid.js');
+      ga('send', 'pageview');
+  
+  
+    <!-- Facebook Pixel Code Elison-->
+  
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2393615217553142');
+    fbq('track', 'PageView');
+  
+  <!-- End Facebook Pixel Code -->
+  
+    function trackContact(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.open(url);
+        }
+      };
+    
+      if(typeof fbq.getState == "function") {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-949566628/UHnACLTk0osBEKT55MQD',
+          'event_callback': callback
+        });
+    
+      
+        fbq('track', 'Contact');
+      }
+      else {
+        callback();
+      }
+    
+      return false;
+    }
+
+    
+  </script>
+  <script type="text/javascript" src="script.js?d=202102221712"></script>
+  
+  </body>
+</html>
