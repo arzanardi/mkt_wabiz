@@ -264,9 +264,11 @@
 	<div class="fluid-width-video-wrapper">		
 		
 		<div class="embed-responsive embed-responsive-16by9 my-3">
+			<!--
 			<img id="unmute" class="embed-responsive-item" src="assets/unmute.png" style="z-index: 1;display: flex;" onclick="player.playVideo();document.getElementById('unmute').style.display='none';document.getElementById('pause').style.display='block';player.unMute();">
 			<img id="play" class="embed-responsive-item" src="assets/play.png" style="z-index: 1;display: none;" onclick="player.playVideo();document.getElementById('play').style.display='none';document.getElementById('pause').style.display='block';player.playVideo();">
 			<div id="pause" class="embed-responsive-item" style="z-index: 1; display: none;" onclick="player.pauseVideo();document.getElementById('play').style.display='flex';document.getElementById('pause').style.display='none';"></div>
+			-->
 			<div id="player"></div>
 			<script>
 				var tag = document.createElement('script');
@@ -280,7 +282,7 @@
 						videoId: 'hYwx1S0vhPQ',
 						playerVars: {
 							'autoplay': 0,
-							'controls': 0,
+							'controls': 1,
 							'rel': 0,
 							'disablekb': 0,
 							'modestbranding': 0,
