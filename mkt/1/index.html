@@ -878,7 +878,7 @@
 		ga('send', 'pageview');
 
 
-  <!-- Facebook Pixel Code Elison-->
+ 
 
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -891,25 +891,23 @@
   fbq('init', '2393615217553142');
   fbq('track', 'PageView');
 
-<!-- End Facebook Pixel Code -->
-
 	function trackContact(url) {
-	var callback = function () {
-		if (typeof(url) != 'undefined') {
-			window.open(url);
-		}
-	};
-	
-	gtag('event', 'conversion', {
-		'send_to': 'AW-949566628/UHnACLTk0osBEKT55MQD',
-		'event_callback': callback
-	});
+        var callback = function () {
+            if (typeof(url) != 'undefined') {
+                window.open(url);
+            }
+        };
+        
+        gtag('event', 'conversion', {
+            'send_to': 'AW-949566628/UHnACLTk0osBEKT55MQD',
+            'event_callback': callback
+        });
 
-	
-	fbq('track', 'Contact');
-	
-	return false;
-}
+        
+        fbq('track', 'Contact');
+        
+        return false;
+    }
 </script>
 
 </body>
