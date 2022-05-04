@@ -1,0 +1,149 @@
+var result = {
+	name: null,
+	email: null,
+	phone: null,
+	perfil: null,
+	type: null,
+	orders: null
+}
+document.getElementById("continua-1").addEventListener("click", goPerfil);
+
+function goPerfil() {
+	document.getElementById("welcome").classList.add("hide");
+	document.getElementById("perfil").classList.remove("hide");
+}
+
+var perfilButtons = document.getElementsByName("perfil-answer");
+for(const b of perfilButtons) {
+	b.addEventListener("click", function() { goType(b) });
+}
+
+function goType(button) {
+	if(button.id == 'perfil-0') {
+		document.getElementById("question-type").innerText = "Qual tipo de estabelecimento deseja abrir?";
+	}
+	document.querySelector('body').style.justifyContent = 'normal';
+	document.getElementById("perfil").classList.add("hide");
+	document.getElementById("type").classList.remove("hide");
+
+	result.perfil = button.innerText;
+}
+
+var typeButtons = document.getElementsByName("type-answer");
+for(const b of typeButtons) {
+	b.addEventListener("click", function() { goOrders(b) });
+}
+
+function goOrders(button) {
+	document.querySelector('body').style.justifyContent = 'center';
+
+	document.getElementById("type").classList.add("hide");
+	document.getElementById("orders").classList.remove("hide");
+
+	result.type = button.innerText;
+}
+
+var ordersButtons = document.getElementsByName("orders-answer");
+for(const b of ordersButtons) {
+	b.addEventListener("click", function() { goName(b) });
+}
+
+function goName(button) {
+
+	document.querySelector('body').style.justifyContent = 'normal';
+
+	document.getElementById("orders").classList.add("hide");
+	document.getElementById("name").classList.remove("hide");
+
+	result.orders = button.innerText;
+	if(button.id != "orders-0") {
+		result.orders = "recebo em média " + button.innerText + " pedidos diariamente";
+	}
+	
+}
+
+function goBack(fase) {
+	document.getElementById("welcome").classList.add("hide");
+	document.getElementById("perfil").classList.add("hide");
+	document.getElementById("type").classList.add("hide");
+	document.getElementById("orders").classList.add("hide");
+	document.getElementById("name").classList.add("hide");
+
+	document.querySelector('body').style.justifyContent = (fase == 'type' || fase == 'name') ? 'normal' : 'center';
+
+	document.getElementById(fase).classList.remove("hide");
+
+}
+
+function send() {
+	var name = document.getElementById("name-answer").value;
+	var email = document.getElementById("email-answer").value;
+	var phone = document.getElementById("phone-answer").value;
+	if(name != null && email != null && phone != null) {
+		if((name.trim() != "" && name.trim().length > 3) && (email.trim() != "" && email.trim().length > 3) && (phone.trim() != "" && phone.trim().length > 7)) {
+
+			result.name = name;
+			result.email = email;
+			result.phone = phone;
+
+			var opps = {
+				"oportunidades": [
+				  {
+					"titulo": result.name,
+					"valor": 650,
+					"codigo_vendedor": 16343,
+					"codigo_metodologia": 5341,
+					"codigo_canal_venda": 84975,
+					"personalizados": [
+					  {
+						"titulo": "Observação",
+						"valor": "[Perfil]: " + result.perfil + "\r\n[Tipo de Estabelecimento]: " + result.type + "\r\n[Número de pedidos]: " + result.orders
+					  }
+					],
+					"empresa": {
+					  "nome": result.name
+					},
+					"contato": {
+					  "nome": result.name,
+					  "email": result.email,
+					  "telefone1": result.phone
+					}
+				  }
+				]
+			  }
+			  
+			  $.ajax({
+				  type: "POST",
+				  url: "https://app.funildevendas.com.br/api/Opportunity?IntegrationKey=c8cbef34-9d30-48fc-8fee-f6ae17f21de2",
+				  dataType: "json",
+				  contentType: "application/json",
+				  data: JSON.stringify(opps),
+				  async: false,
+				  success: function (data) {
+					document.getElementById("name").classList.add("hide");
+		
+					document.getElementById("end").classList.remove("hide");
+
+					trackContact();
+				  }
+			  });
+
+			
+
+			
+		}
+		else {
+			alert("Por favor, informe seus dados corretamente!");
+		}
+	}
+	else {
+		alert("Por favor, informe seus dados!");
+	}
+	
+}
+
+function zap() {
+	var message = "Olá! Sou " + result.name + ", " + result.perfil.toLowerCase() + " (" + result.type + ") e " + result.orders.toLowerCase() + ". Gostaria de mais informações.";
+
+	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
+}

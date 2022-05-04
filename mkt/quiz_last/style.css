@@ -1,0 +1,107 @@
+@font-face {
+	font-family: Gotham Rounded;
+	src: url("font.otf") format("opentype");
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+	font-family: Gotham Rounded;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-image: url("mobile.webp");
+	background-position: center right -150px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.container {
+	width: 500px;
+	max-width: 90%;
+}
+
+.black {
+	background-color: rgb(32 67 68 / 85%);
+	padding: 10px;
+	text-align: center;
+	border-radius: 20px;
+}
+
+.answer {
+	display: grid;
+	grid-template-columns: repeat(1, auto);
+	gap: 10px;
+}
+
+@media (max-width: 991px) {
+	.answer {
+		display: grid;
+		grid-template-columns: repeat(1, auto);
+		gap: 10px;
+	}
+}
+
+.btn {
+	border-radius: 10px;
+    padding: 10px;
+    font-size: 24px;
+    background-color: #aeed5a;
+    outline: none;
+    border: none;
+    color: #253b3b;
+	margin: 5px;
+}
+
+.black h1 {
+	color: #d7ff5b;
+	font-size: 24px;
+}
+
+.black p {
+	font-size: 18px;
+	color: white;
+	padding: 3px 10px;
+}
+
+.black .footer {
+	padding: 20px 20px 10px;
+}
+
+	.black .footer a {
+		color: #FFF;
+	}
+
+.progressContainer {
+	width: 100%;
+	background-color: #ddd;
+	border-radius: 10px;
+}
+
+#progress {
+	width: 1%;
+	height: 30px;
+	background-color: #337ab7;
+	border-radius: 10px;
+}
+
+.hide {
+	display: none;
+}
+
+input[type="text"], input[type="email"], input[type="tel"] {
+	padding: 10px;
+    font-size: 1.5em;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 10px;
+    text-align: center;
+}
