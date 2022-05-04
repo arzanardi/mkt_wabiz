@@ -147,7 +147,7 @@
   
   
     function trackContact(url) {
-      var callback = function () {
+      /*var callback = function () {
         if (typeof(url) != 'undefined') {
           window.open(url);
         }
@@ -160,15 +160,17 @@
         //  'event_callback': callback
         //});
     
-        gtag('event', 'contact');  
-        fbq('track', 'Contact');
+        gtag('event', 'Contact');  
+        //fbq('track', 'Contact');
       }
       else {
         callback();
       }
       
       return false;
-
+      */
+     
+      gtag('event', 'Contact');  
       
     }
 
