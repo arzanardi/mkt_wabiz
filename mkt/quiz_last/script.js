@@ -96,8 +96,16 @@ function send() {
 					"codigo_canal_venda": 84975,
 					"personalizados": [
 					  {
-						"titulo": "Observação",
-						"valor": "[Perfil]: " + result.perfil + "\r\n[Tipo de Estabelecimento]: " + result.type + "\r\n[Número de pedidos]: " + result.orders
+						"titulo": "Perfil",
+						"valor": result.perfil
+					  },
+					  {
+						  "titulo": "Tipo de Estabelecimento",
+						  "valor": result.type
+					  },
+					  {
+						  "titulo": "Pedidos",
+						  "valor": result.orders
 					  }
 					],
 					"empresa": {
