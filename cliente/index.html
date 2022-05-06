@@ -1,24 +1,3 @@
-<?php
-if(isset($_REQUEST["data"])) {
-  $params = base64_decode($_REQUEST["data"]);
-  $params = json_decode(html_entity_decode(utf8_decode($params)));
-  $confirmationMode = 
-    $params->estabelecimento_nome != null &&
-    $params->estabelecimento_telefone != null &&
-    $params->documento != null &&
-    $params->proprietario_nome != null &&
-    $params->proprietario_telefone != null &&
-    $params->proprietario_email != null;
-}
-
-function getName($name, $type) {
-  $name = trim($name);
-  $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
-  $first_name = trim( preg_replace('#'.preg_quote($last_name,'#').'#', '', $name ) );
-  return $type != 'LAST' ? $first_name : $last_name;
-}
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br"><head>
     <meta charset="UTF-8">
@@ -43,6 +22,10 @@ function getName($name, $type) {
          padding-top: 0rem;
          padding-bottom: 100px;
         }
+
+        .dataValue {
+          color: #d0f118;
+        }
     </style>
 
     <script src='forge-sha256.min.js'></script>
@@ -66,85 +49,43 @@ function getName($name, $type) {
     <div class="pt-24">
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
-        <div class="flex flex-col w-full md:w-6/12 justify-center items-start text-center md:text-left">
+        <div class="flex flex-col w-full md:w-6/12 justify-center items-start text-center md:text-left px-5">
             
             <p class="uppercase tracking-loose w-full">
               <img src="wabiz_wh.png" width="200" /><br />ACREDITE NO SUCESSO!!!
             </p>
             
-            <?php
-            if(isset($_REQUEST["vendedor"])) {
-              ?>
-            <h2 class="my-4 text-3xl font-bold leading-tight">Informe os dados do cliente:</h1>
-            <div class="w-full pb-5">              
-              <label for="estabelecimento_nome" class="block font-medium">Nome do estabelecimento</label>
-              <input type="text" id="estabelecimento_nome" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+            <div id="dados" style="display: none;">
+              <h1 class="my-4 text-5xl font-bold leading-tight">É um prazer ter você como cliente!</h1>
+              <p class="leading-normal text-2xl mb-8">Estamos ansiosos para iniciar a produção do seu aplicativo que vai te ajudar alavancar suas vendas.</p>
+              <h2 class="my-4 text-3xl font-bold leading-tight" id="confirmDataText">Por favor confirme seus dados:</h1>
+              <div class="w-full pb-3">              
+                <label for="estabelecimento_nome" class="block font-medium">Nome do estabelecimento</label>
+                <div class="text-2xl font-bold dataValue" id="estabelecimento_nome"></div>
+              </div>
+              <div class="w-full pb-3">              
+                <label for="documento" class="block font-medium">CNPJ</label>
+                <div class="text-2xl font-bold dataValue" id="documento"></div>
+              </div>
+              <div class="w-full pb-3">              
+                <label for="estabelecimento_telefone" class="block font-medium">Telefone do Estabelecimento</label>
+                <div class="text-2xl font-bold dataValue" id="estabelecimento_telefone"></div>
+              </div>
+              <div class="w-full pb-3">              
+                <label for="proprietario_nome" class="block font-medium">Nome do Proprietário</label>
+                <div class="text-2xl font-bold dataValue" id="proprietario_nome"></div>
+              </div>
+              <div class="w-full pb-3">              
+                <label for="proprietario_telefone" class="block font-medium">Melhor Telefone para Contato</label>
+                <div class="text-2xl font-bold dataValue" id="proprietario_telefone"></div>
+              </div>
+              <div class="w-full pb-3">              
+                <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
+                <div class="text-2xl font-bold dataValue" id="proprietario_email"></div>
+              </div>
+              <button id="buttonReady" onclick="confirmaDados()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;">TUDO CERTO! Estou pronto para começar</button>
             </div>
-            <div class="w-full pb-5">              
-              <label for="documento" class="block font-medium">CNPJ</label>
-              <input type="text" id="documento" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
-            </div>
-            <div class="w-full pb-5">              
-              <label for="estabelecimento_telefone" class="block font-medium">Telefone do Estabelecimento</label>
-              <input type="text" id="estabelecimento_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
-            </div>
-            <div class="w-full pb-5">              
-              <label for="proprietario_nome" class="block font-medium">Nome do Proprietário</label>
-              <input type="text" id="proprietario_nome" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
-            </div>
-            <div class="w-full pb-5">              
-              <label for="proprietario_telefone" class="block font-medium">Melhor Telefone para Contato</label>
-              <input type="text" id="proprietario_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
-            </div>
-            <div class="w-full pb-5">              
-              <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
-              <input type="text" id="proprietario_email" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
-            </div>
-            <button id="buttonLink" onclick="getLink()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;">Gerar link para cliente</button>
-          <?php
-            }
-            else {
-              if($confirmationMode) {
-                ?>
-            <h1 class="my-4 text-5xl font-bold leading-tight">É um prazer ter você como cliente!</h1>
-            <p class="leading-normal text-2xl mb-8">Estamos ansiosos para iniciar a produção do seu aplicativo que vai te ajudar alavancar suas vendas.</p>
-            <h2 class="my-4 text-3xl font-bold leading-tight">Por favor confirme seus dados:</h1>
-            <div class="w-full pb-5">              
-              <label for="estabelecimento_nome" class="block font-medium">Nome do estabelecimento</label>
-              <div class="text-2xl font-bold"><?php echo $params->estabelecimento_nome; ?></div>
-            </div>
-            <div class="w-full pb-5">              
-              <label for="documento" class="block font-medium">CNPJ</label>
-              <div class="text-2xl font-bold"><?php echo $params->documento; ?></div>
-            </div>
-            <div class="w-full pb-5">              
-              <label for="estabelecimento_telefone" class="block font-medium">Telefone do Estabelecimento</label>
-              <div class="text-2xl font-bold"><?php echo $params->estabelecimento_telefone; ?></div>
-            </div>
-            <div class="w-full pb-5">              
-              <label for="proprietario_nome" class="block font-medium">Nome do Proprietário</label>
-              <div class="text-2xl font-bold"><?php echo $params->proprietario_nome; ?></div>
-            </div>
-            <div class="w-full pb-5">              
-              <label for="proprietario_telefone" class="block font-medium">Melhor Telefone para Contato</label>
-              <div class="text-2xl font-bold"><?php echo $params->proprietario_telefone; ?></div>
-            </div>
-            <div class="w-full pb-5">              
-              <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
-              <div class="text-2xl font-bold"><?php echo $params->proprietario_email; ?></div>
-            </div>
-            <button id="buttonReady" onclick="confirmaDados()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;">TUDO CERTO! Estou pronto para começar</button>
-                <?php
-              }
-              else {
-                ?>
-                <h2 class="my-4 text-3xl font-bold leading-tight">Nenhuma informação</h1>
-                <?php
-              }
-              ?>
-              <?php
-            }
-            ?>
+            <h2 id="semDados" class="my-4 text-3xl font-bold leading-tight" style="display: none;">Nenhuma informação</h1>             
         </div>
         <!--Right Col-->
         <div class="w-full md:w-6/12 py-6 px-6 text-center">
@@ -202,53 +143,54 @@ function getName($name, $type) {
     
    
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'GTM-NMFB936');
+  var params = (new URL(document.location)).searchParams;
+  var hasData = params.has('data');
 
-  function getLink() {
-    var params = {
-      estabelecimento_nome: document.getElementById("estabelecimento_nome").value.toUpperCase(),
-      estabelecimento_telefone: document.getElementById("estabelecimento_telefone").value.toUpperCase(),
-      documento: document.getElementById("documento").value.toUpperCase(),
-      proprietario_nome: document.getElementById("proprietario_nome").value.toUpperCase(),
-      proprietario_telefone: document.getElementById("proprietario_telefone").value.toUpperCase(),
-      proprietario_email: document.getElementById("proprietario_email").value.toUpperCase()
-    };
+  if(hasData) {
+    params = atob(params.get('data'));
+    params = JSON.parse(params);
 
-    var inputs = document.getElementsByTagName('input');
-    inputs = Array.prototype.slice.call(inputs);
-    inputs.every(element => {
-      if(!element.value) {
-        alert('Por favor, informe todos os campos');
-        return;
-      }
-    });
+    document.getElementById("estabelecimento_nome").innerHTML = params.estabelecimento_nome;
+    document.getElementById("estabelecimento_telefone").innerHTML = params.estabelecimento_telefone;
+    document.getElementById("documento").innerHTML = params.documento;
+    document.getElementById("proprietario_nome").innerHTML = params.proprietario_nome;
+    document.getElementById("proprietario_telefone").innerHTML = params.proprietario_telefone;
+    document.getElementById("proprietario_email").innerHTML = params.proprietario_email;
 
-    params = btoa(JSON.stringify(params));
+    document.getElementById("dados").style.display = 'block';
 
-    var link = location.protocol + '://'+location.host+'/?data='+params;
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-    navigator.clipboard.writeText(link);
-
-    /* Alert the copied text */
-    alert("Link gerado e copiado! Envie para o cliente");
-
-
+    gtag('config', 'GTM-NMFB936');
+  }
+  else {
+    document.getElementById("semDados").style.display = 'block';
   }
 
+  
+  
   function generateEventId() {
     var gtmData = window.google_tag_manager['GTM-NMFB936'].dataLayer.get('gtm');
     return gtmData.start + '.' + gtmData.uniqueEventId;
   }
+
+  
+  function getName(fullName, first_or_last) {
+    var firstName = fullName.split(' ').slice(0, -1).join(' ');
+    var lastName = fullName.split(' ').slice(-1).join(' ');
+    return first_or_last != 'LAST' ? firstName : lastName;
+  }
+
 
   function confirmaDados() {
 
     var eventId = generateEventId();
 
     document.getElementById('welcomeMessage').style.display = 'block';
+    document.getElementById('confirmDataText').style.display = 'none';
     document.getElementById('buttonReady').style.display = 'none';
     location.href = '#welcomeMessage';
 
@@ -260,11 +202,11 @@ function getName($name, $type) {
       'currency': 'BRL',
       'value': 650.00,
       user_data: {
-        email_address: forge_sha256('<?php echo $params->proprietario_email ?>'),
-        phone_number: forge_sha256('<?php echo $params->proprietario_telefone ?>'),
+        email_address: forge_sha256(params.proprietario_email),
+        phone_number: forge_sha256(params.proprietario_telefone),
         address: {
-          first_name: forge_sha256('<?php echo getName($params->proprietario_email, 'FIRST') ?>'),
-          last_name: forge_sha256('<?php echo getName($params->proprietario_email, 'LAST') ?>'),
+          first_name: forge_sha256(getName(params.proprietario_nome, 'FIRST')),
+          last_name: forge_sha256(getName(params.proprietario_nome, 'LAST')),
           /*city: forge_sha256('<HASHED DATA>'),
           region: forge_sha256('<HASHED_DATA>'),
           postal_code: forge_sha256('<HASHED_DATA>'),*/
