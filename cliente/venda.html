@@ -164,7 +164,7 @@
 
     var data = btoa(JSON.stringify(params));
 
-    var link = location.protocol + '://'+location.host+'/?data='+data;
+    var link = location.protocol + '://'+location.host+'/cliente/?data='+data;
 
     navigator.clipboard.writeText(link);
 
