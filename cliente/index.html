@@ -202,15 +202,15 @@
       'currency': 'BRL',
       'value': 650.00,
       user_data: {
-        email_address: params.proprietario_email,
-        phone_number: params.proprietario_telefone,
+        email_address: forge_sha256(params.proprietario_email),
+        phone_number: forge_sha256(params.proprietario_telefone),
         address: {
-          first_name: getName(params.proprietario_nome, 'FIRST'),
-          last_name: getName(params.proprietario_nome, 'LAST'),
-          /*city: '<HASHED DATA>',
-          region: '<HASHED_DATA>',
-          postal_code: '<HASHED_DATA>'),*/
-          country: 'Brazil'    
+          first_name: forge_sha256(getName(params.proprietario_nome, 'FIRST')),
+          last_name: forge_sha256(getName(params.proprietario_nome, 'LAST')),
+          /*city: forge_sha256('<HASHED DATA>'),
+          region: forge_sha256('<HASHED_DATA>'),
+          postal_code: forge_sha256('<HASHED_DATA>'),*/
+          country: forge_sha256('Brazil')     
         },    
       },
       items: [
