@@ -136,45 +136,46 @@
     </div>
     
   </div>
-  <div id="fb-root"></div>
+  <!--<div id="fb-root"></div>-->
   
   <!-- Global site tag (gtag.js) - Google Analytics
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3LBCTRTJK"></script> -->
   <script>
-    /*
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-N3LBCTRTJK');
-    */
+    gtag('config', 'GTM-P2GHVPB');
   
-  
-    function trackContact(url) {
-      /*var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.open(url);
+    function generateEventId() {
+      var gtmData = window.google_tag_manager['GTM-P2GHVPB'].dataLayer.get('gtm');
+      return gtmData.start + '.' + gtmData.uniqueEventId;
+    }
+
+    
+    function getName(fullName, first_or_last) {
+      var firstName = fullName.split(' ').slice(0, -1).join(' ');
+      var lastName = fullName.split(' ').slice(-1).join(' ');
+      return first_or_last != 'LAST' ? firstName : lastName;
+    }
+    
+    function trackContact(event, name, email, phone) {
+      gtag('event', event,
+      {
+        'x-fb-event_id': generateEventId(),
+        user_data: {
+          email_address: forge_sha256(email),
+          phone_number: forge_sha256(phone),
+          address: {
+            first_name: forge_sha256(getName(name, 'FIRST')),
+            last_name: forge_sha256(getName(name, 'LAST')),
+            /*city: forge_sha256('<HASHED DATA>'),
+            region: forge_sha256('<HASHED_DATA>'),
+            postal_code: forge_sha256('<HASHED_DATA>'),
+            country: forge_sha256('Brazil')*/     
+          }    
         }
-      };
-    
-      
-      if(typeof fbq.getState == "function") {
-        //gtag('event', 'conversion', {
-        //  'send_to': 'AW-949566628/UHnACLTk0osBEKT55MQD',
-        //  'event_callback': callback
-        //});
-    
-        gtag('event', 'Contact');  
-        //fbq('track', 'Contact');
-      }
-      else {
-        callback();
-      }
-      
-      return false;
-      */
-     
-      gtag('event', 'Contact');  
+      });  
       
     }
 

@@ -132,7 +132,7 @@ function send() {
 		
 					document.getElementById("end").classList.remove("hide");
 
-					trackContact();
+					trackContact('lead', name, email, phone);
 				  }
 			  });
 
@@ -154,4 +154,6 @@ function zap() {
 	var message = "Olá! Sou " + result.name + ", " + result.perfil.toLowerCase() + " (" + result.type + ") e " + result.orders.toLowerCase() + ". Gostaria de mais informações.";
 
 	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
+
+	trackContact('contact', name, email, phone);
 }
