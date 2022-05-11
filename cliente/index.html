@@ -64,6 +64,10 @@
                 <div class="text-2xl font-bold dataValue" id="estabelecimento_nome"></div>
               </div>
               <div class="w-full pb-3">              
+                <label for="cidade" class="block font-medium">Cidade</label>
+                <div class="text-2xl font-bold dataValue" id="cidade"></div>
+              </div>
+              <div class="w-full pb-3">              
                 <label for="documento" class="block font-medium">CNPJ</label>
                 <div class="text-2xl font-bold dataValue" id="documento"></div>
               </div>
@@ -83,7 +87,7 @@
                 <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
                 <div class="text-2xl font-bold dataValue" id="proprietario_email"></div>
               </div>
-              <button id="buttonReady" onclick="confirmaDados()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;">TUDO CERTO! Estou pronto para começar</button>
+              <button id="buttonReady" onclick="confirmData()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;background: #00ff72;color: #183606;font-size: 1.2em;">Clique aqui para confirmar os dados</button>
             </div>
             <h2 id="semDados" class="my-4 text-3xl font-bold leading-tight" style="display: none;">Nenhuma informação</h1>             
         </div>
@@ -157,6 +161,7 @@
     document.getElementById("proprietario_nome").innerHTML = params.proprietario_nome;
     document.getElementById("proprietario_telefone").innerHTML = params.proprietario_telefone;
     document.getElementById("proprietario_email").innerHTML = params.proprietario_email;
+    document.getElementById("cidade").innerHTML = params.cidade;
 
     document.getElementById("dados").style.display = 'block';
 
@@ -184,8 +189,24 @@
     return first_or_last != 'LAST' ? firstName : lastName;
   }
 
+  function removeAccentsAndSpaces(str) {
+    return str.replace(/[^a-zA-Zs]/g, "");
+  }
 
-  function confirmaDados() {
+  function hashString(str, removeSpaces) {
+    
+    if(typeof removeSpaces === 'undefined') removeSpaces = true;
+
+    str = str.normalize("NFD").toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "");;
+    if(removeSpaces) {
+      str = str.replace(/\s/g, '');
+    }
+
+    return forge_sha256(str);
+  }
+
+
+  function confirmData() {
 
     var eventId = generateEventId();
 
@@ -196,21 +217,26 @@
 
     //fbq('track', 'Purchase', {currency: "BRL", value: 650.00}, {eventId: eventId});
 
+    var city = params.cidade.split("-")[0];
+    var state = params.cidade.split("-")[1];
+    
+
     gtag('event', 'purchase',
     {
       'x-fb-event_id': eventId,
       'currency': 'BRL',
       'value': 650.00,
       user_data: {
-        email_address: forge_sha256(params.proprietario_email),
-        phone_number: forge_sha256(params.proprietario_telefone),
+        email_address: forge_sha256(params.proprietario_email.toLowerCase().trim()),
+        phone_number: hashString(params.proprietario_telefone),
+        /*genre: hashString(params.proprietario_genero),*/
         address: {
-          first_name: forge_sha256(getName(params.proprietario_nome, 'FIRST')),
-          last_name: forge_sha256(getName(params.proprietario_nome, 'LAST')),
-          /*city: forge_sha256('<HASHED DATA>'),
-          region: forge_sha256('<HASHED_DATA>'),
-          postal_code: forge_sha256('<HASHED_DATA>'),*/
-          country: forge_sha256('Brazil')     
+          first_name: hashString(getName(params.proprietario_nome, 'FIRST'), false),
+          last_name: hashString(getName(params.proprietario_nome, 'LAST'), false),
+          city: hashString(city),
+          region: hashString(state),
+          /*postal_code: forge_sha256('<HASHED_DATA>'),*/
+          country: forge_sha256('br')     
         },    
       },
       items: [

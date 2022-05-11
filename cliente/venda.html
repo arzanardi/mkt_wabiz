@@ -24,6 +24,8 @@
         }
     </style>
 
+    <script src='cidades-estados.js'></script>
+
   </head>
   <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
 
@@ -36,11 +38,19 @@
               <img src="wabiz_wh.png" width="200" /><br />ACREDITE NO SUCESSO!!!
             </p>
             
-            <div id="form">
+            <div id="form" style="width: 100%;">
               <h2 class="my-4 text-3xl font-bold leading-tight">Informe os dados do cliente:</h1>
               <div class="w-full pb-5">              
                 <label for="estabelecimento_nome" class="block font-medium">Nome do estabelecimento</label>
                 <input type="text" id="estabelecimento_nome" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="estado" class="block font-medium">Estado</label>
+                <select id="estado" class="form-input px-3 py-3 rounded text-black w-full uppercase"></select>
+              </div>
+              <div class="w-full pb-5">              
+                <label for="cidade" class="block font-medium">Cidade</label>
+                <select id="cidade" class="form-input px-3 py-3 rounded text-black w-full uppercase"></select>
               </div>
               <div class="w-full pb-5">              
                 <label for="documento" class="block font-medium">CNPJ</label>
@@ -56,19 +66,31 @@
               </div>
               <div class="w-full pb-5">              
                 <label for="proprietario_telefone" class="block font-medium">Melhor Telefone para Contato</label>
-                <input type="text" id="proprietario_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+                <input type="text" id="proprietario_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase" value="+55" onfocus="javascript: this.setSelectionRange(1000, 1000);"/>
               </div>
               <div class="w-full pb-5">              
                 <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
                 <input type="text" id="proprietario_email" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
               </div>
+              <!--
+              <div class="w-full pb-5">              
+                <label for="proprietario_genero" class="block font-medium">Gênero</label>
+                <select id="proprietario_genero" class="form-input px-3 py-3 rounded text-black w-full uppercase">
+                  <option value="M">Masculino</option>
+                  <option value="F">Feminino</option>
+                </select>
+              </div>-->
               <button id="buttonLink" onclick="getLink()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;">Gerar link para cliente</button>
           </div>
-          <div id="dados" style="display: none;">
+          <div id="dados" style="display: none; width: 100%;">
              <h2 class="my-4 text-3xl font-bold leading-tight" id="confirmDataText">Dados do Cliente:</h1>
             <div class="w-full pb-3">              
               <label for="estabelecimento_nome" class="block font-medium">Nome do estabelecimento</label>
               <div class="text-2xl font-bold dataValue" id="estabelecimento_nome"></div>
+            </div>
+            <div class="w-full pb-3">              
+              <label for="cidade" class="block font-medium">Nome do estabelecimento</label>
+              <div class="text-2xl font-bold dataValue" id="cidade"></div>
             </div>
             <div class="w-full pb-3">              
               <label for="documento" class="block font-medium">CNPJ</label>
@@ -143,6 +165,14 @@
    
 <script>
   var params = {};
+  
+  new dgCidadesEstados({
+    cidade: document.getElementById('cidade'),
+    estado: document.getElementById('estado'),
+    estadoVal: 25,
+    cidadeVal: 'São Paulo'
+  });
+
   function getLink() {
     params = {
       estabelecimento_nome: document.querySelector("input#estabelecimento_nome").value.toUpperCase(),
@@ -150,7 +180,9 @@
       documento: document.querySelector("input#documento").value.toUpperCase(),
       proprietario_nome: document.querySelector("input#proprietario_nome").value.toUpperCase(),
       proprietario_telefone: document.querySelector("input#proprietario_telefone").value.toUpperCase(),
-      proprietario_email: document.querySelector("input#proprietario_email").value.toUpperCase()
+      proprietario_email: document.querySelector("input#proprietario_email").value.toUpperCase(),
+      cidade: document.querySelector("select#cidade").value.toUpperCase(),
+      /*proprietario_genero: document.querySelector("select#proprietario_genero").value.toUpperCase()*/
     };
 
     var inputs = document.getElementsByTagName('input');
@@ -179,6 +211,7 @@
     document.querySelector("div#proprietario_nome").innerHTML = params.proprietario_nome;
     document.querySelector("div#proprietario_telefone").innerHTML = params.proprietario_telefone;
     document.querySelector("div#proprietario_email").innerHTML = params.proprietario_email;
+    document.querySelector("div#cidade").innerHTML = params.cidade;
 
     document.getElementById("dados").style.display = 'block';
 
