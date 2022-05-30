@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>WABiz &ndash; Aplicativos para Delivery </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://gtm.wabizdelivery.com/pyowbivt.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P2GHVPB');</script>
+  <!-- End Google Tag Manager -->
+  
+  <style>
+    .pushable {
+      position: relative;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      outline-offset: 4px;
+      transition: filter 250ms;
+    }
+    .shadow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      background: hsl(0deg 0% 0% / 0.25);
+      will-change: transform;
+      transform: translateY(2px);
+      transition:
+        transform
+        600ms
+        cubic-bezier(.3, .7, .4, 1);
+    }
+    .edge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background: linear-gradient( to left, hsl(86deg 50% 34%) 0%, hsl(86deg 36% 24%) 8%, hsl(85deg 40% 25%) 92%, hsl(86deg 50% 34%) 100% );
+    }
+    .front {
+      display: block;
+      position: relative;
+      padding: 12px 42px;
+      border-radius: 12px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #254940;
+      background: hsl(86deg 80% 64%);
+      will-change: transform;
+      transform: translateY(-4px);
+      transition:
+        transform
+        600ms
+        cubic-bezier(.3, .7, .4, 1);
+    }
+    .pushable:hover {
+      filter: brightness(110%);
+    }
+    .pushable:hover .front {
+      transform: translateY(-6px);
+      transition:
+        transform
+        250ms
+        cubic-bezier(.3, .7, .4, 1.5);
+    }
+    .pushable:active .front {
+      transform: translateY(-2px);
+      transition: transform 34ms;
+    }
+    .pushable:hover .shadow {
+      transform: translateY(4px);
+      transition:
+        transform
+        250ms
+        cubic-bezier(.3, .7, .4, 1.5);
+    }
+    .pushable:active .shadow {
+      transform: translateY(1px);
+      transition: transform 34ms;
+    }
+    .pushable:focus:not(:focus-visible) {
+      outline: none;
+    }
+  </style>
+</head>
+<body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://gtm.wabizdelivery.com/ns.html?id=GTM-P2GHVPB"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="container">
+    <div class="black">
+      <div id="welcome">
+        <div class="question">
+          <h1>Você está no caminho certo para descobrir o melhor aplicativo que você pode ter para seu delivery!</h1>
+          <p style="background: red; border-radius: 10px;  padding: 10px;">Não pague comissões sobre as vendas e nem por quantidade de pedidos e sim uma mensalidade fixa.</p>
+        </div>
+        <div class="answer">
+            <button class="pushable" onclick="zap(true)">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front">
+                <img src="whatsapp_logo.webp" width="32" style="vertical-align: middle;" /> CHAMAR NO WHATSAPP
+                </span>
+            </button>
+        </div>
+      </div>
+      <div id="end" class="hide">
+        <div class="question">
+          <h1>Obrigado!</h1>
+          
+          <p>Fique a vontade, tire suas dúvidas, veja uma demonstração e saiba como um aplicativo próprio pode te ajudar a crescer muito com seu negócio.</p>
+          <p>Sucesso!</p>
+          <br />
+          <button class="pushable" onclick="zap(false)">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">
+            <img src="whatsapp_logo.webp" width="32" style="vertical-align: middle;" /> CHAMAR NO WHATSAPP
+            </span>
+            </button>
+          <br />
+          <p>Este também são nossos telefones:<br />(11) 98659-8313<br />(11) 4216-3417</p>
+          <p>E-mail:<br />comercial@wabiz.com.br</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'GTM-P2GHVPB');
+    
+    function trackContact() {
+      gtag('event', 'Contact');  
+      
+    }
+
+    
+  </script>
+  <script type="text/javascript" src="script.js?d=202205271731"></script>  
+</html>
