@@ -4,7 +4,8 @@ var result = {
 	phone: null,
 	perfil: null,
 	type: null,
-	orders: null
+	orders: null, 
+	ordersValue: null
 }
 document.getElementById("continua-1").addEventListener("click", goPerfil);
 
@@ -55,7 +56,7 @@ function goName(button) {
 	document.getElementById("orders").classList.add("hide");
 	document.getElementById("name").classList.remove("hide");
 
-	result.orders = button.innerText;
+	result.orders = result.ordersValue = button.innerText;
 	if(button.id != "orders-0") {
 		result.orders = "recebo em média " + button.innerText + " pedidos diariamente";
 	}
@@ -93,7 +94,7 @@ function send() {
 					"valor": 650,
 					"codigo_vendedor": 16343,
 					"codigo_metodologia": 5341,
-					"codigo_canal_venda": 84975,
+					"codigo_canal_venda": 88657,
 					"personalizados": [
 					  {
 						"titulo": "Perfil",
@@ -105,7 +106,7 @@ function send() {
 					  },
 					  {
 						  "titulo": "Pedidos",
-						  "valor": result.orders
+						  "valor": result.ordersValue
 					  }
 					],
 					"empresa": {
