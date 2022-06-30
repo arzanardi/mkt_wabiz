@@ -133,8 +133,7 @@ function send() {
 		
 					document.getElementById("end").classList.remove("hide");
 
-					//trackContact('Lead', name, email, phone);
-					zap();
+					trackContact('Lead', name, email, phone);
 				  },
 				  error: function(data) {
 					alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
