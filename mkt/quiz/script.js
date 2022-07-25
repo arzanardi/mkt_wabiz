@@ -159,6 +159,12 @@ function zap() {
 	
 	var message = "Olá! Sou " + result.name + ", " + result.perfil.toLowerCase() + " (" + result.type + ") e " + result.orders.toLowerCase() + ". Gostaria de mais informações.";
 
+	var qs = new URLSearchParams(window.location.search);
+	var customParam = qs.get('c_p');
+	if(customParam != null) {
+		message += " " + customParam;
+	}	
+	
 	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
 
 	trackContact('Contact', result.name, result.email, result.phone);
