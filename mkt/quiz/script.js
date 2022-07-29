@@ -129,9 +129,9 @@ function send() {
 				  data: JSON.stringify(opps),
 				  async: false,
 				  success: function (data) {
-					document.getElementById("name").classList.add("hide");
+					//document.getElementById("name").classList.add("hide");
 		
-					document.getElementById("end").classList.remove("hide");
+					//document.getElementById("end").classList.remove("hide");
 
 					//trackContact('Lead', name, email, phone);
 					zap();
@@ -169,5 +169,7 @@ function zap() {
 
 	trackContact('Contact', result.name, result.email, result.phone);
 
-	window.history.pushState("", "", '/obrigado');
+	setTimeout(function() {
+		window.location.href='obrigado.html'
+	}, 1000);
 }
