@@ -168,4 +168,6 @@ function zap() {
 	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
 
 	trackContact('Contact', result.name, result.email, result.phone);
+
+	window.history.pushState("", "", '/obrigado');
 }
