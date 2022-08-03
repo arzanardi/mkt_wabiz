@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>WABiz &ndash; Aplicativos para Delivery </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="adopt-website-id" content="30d03d81-f47f-4c43-b56b-df71b5f057ba" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <!--<script src="//tag.goadopt.io/injector.js?website_code=30d03d81-f47f-4c43-b56b-df71b5f057ba" class="adopt-injector"></script>-->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://gtm.wabizdelivery.com/pyowbivt.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P2GHVPB');</script>
+  <!-- End Google Tag Manager -->
+  
+
+</head>
+<body> 
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://gtm.wabizdelivery.com/ns.html?id=GTM-P2GHVPB"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="container">
+    <div class="black">
+      <div id="welcome">
+        <div class="question">
+          <h1>Você está no caminho certo para descobrir como o Davi aumentou as vendas em 70% no Delivery.</h1>
+          <p style="background: red; border-radius: 10px;  padding: 10px;">Essa estratégia secreta tem mudado os resultados financeiros de milhares de Deliveries no Brasil.</p>
+        </div>
+        <div class="answer">
+          <button id="continua-1" class="btn">VAMOS LÁ!<br />⇨ CLIQUE AQUI ⇦</button>
+        </div>
+      </div>
+      <div id="perfil" class="hide">
+        <div class="question">
+          <h1>Perfil</h1>
+          <p>Em qual destes perfis você se encaixa?</p>
+        </div>
+        <div class="answer">
+          <button name="perfil-answer" id="perfil-1" class="btn">Tenho um estabelecimento</button>
+          <button name="perfil-answer" id="perfil-2" class="btn">Tenho uma rede de lojas</button>
+          <button name="perfil-answer" id="perfil-3" class="btn">Trabalho em casa</button>
+          <button name="perfil-answer" id="perfil-0" class="btn">Ainda não tenho um Delivery</button>
+          <button name="perfil-answer" id="perfil-0" class="btn">Estou montando um Delivery</button>
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('welcome')">Voltar</a>
+        </div>
+      </div>
+      <div id="type" class="hide">
+        <div class="question">
+          <h1>Seu negócio</h1>
+          <p id="question-type">Qual o tipo de estabelecimento?</p>
+        </div>
+        <div class="answer">
+          <button name="type-answer" class="btn">Adega</button>
+          <button name="type-answer" class="btn">Bar</button>
+          <button name="type-answer" class="btn">Casa de Açaí</button>
+          <button name="type-answer" class="btn">Casa de Bolos</button>
+          <button name="type-answer" class="btn">Comida Árabe</button>
+          <button name="type-answer" class="btn">Comida Oriental</button>
+          <button name="type-answer" class="btn">Comida Variada</button>
+          <button name="type-answer" class="btn">Confeitaria</button>
+          <button name="type-answer" class="btn">Empório</button>
+          <button name="type-answer" class="btn">Esfiharia</button>
+          <button name="type-answer" class="btn">Hamburgueria</button>
+          <button name="type-answer" class="btn">Lanchonete</button>
+          <button name="type-answer" class="btn">Marmitex</button>
+          <button name="type-answer" class="btn">Mercado</button>
+          <button name="type-answer" class="btn">Padaria</button>
+          <button name="type-answer" class="btn">Pastelaria</button>
+          <button name="type-answer" class="btn">Pizzaria</button> 
+          <button name="type-answer" class="btn">Salgados</button>
+          <button name="type-answer" class="btn">Sorveteria</button>
+          <hr />
+          <button name="type-answer" class="btn">Outro</button>   
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('perfil')">Voltar</a>
+        </div>
+      </div>
+      <div id="orders" class="hide">
+        <div class="question">
+          <h1>Pedidos</h1>
+          <p>Quantos pedidos você recebe em média diariamente?</p>
+        </div>
+        <div class="answer">
+          <button name="orders-answer" id="orders-0" class="btn">Ainda não recebo pedidos</button>
+          <button name="orders-answer" id="orders-10" class="btn">Até 10</button>
+          <button name="orders-answer" id="orders-25" class="btn">De 10 a 25</button>
+          <button name="orders-answer" id="orders-50" class="btn">De 25 a 50</button>
+          <button name="orders-answer" id="orders-100" class="btn">De 50 a 100</button>
+          <button name="orders-answer" id="orders-101" class="btn">Mais de 100</button>
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('type')">Voltar</a>
+        </div>
+      </div>
+      <div id="name" class="hide">
+        <div class="question">
+          <h1>Quase lá...</h1>
+          <p>Para finalizar, só precisamos de alguns dados para lhe atender melhor:</p>
+        </div>
+        <div class="answer">
+          <input type="text" id="name-answer" placeholder="NOME" />
+          <input type="email" id="email-answer" placeholder="E-MAIL" />
+          <input type="tel" id="phone-answer" placeholder="TELEFONE" />
+          <div style="color: #FFF; font-size: .8em;">Ao clicar para enviar você consente com nossa <a href="#" style="color: #d7ff5b">política de privacidade</a></div>
+          <button id="send" class="btn" onclick="send()">
+            <img src="whatsapp_logo.webp" width="32" style="vertical-align: middle;" /> CONVERSAR NO WHATSAPP 
+          </button> 
+          <br />                 
+        </div>
+        <div class="footer">
+          <a href="javascript:;" onclick="goBack('orders')">Voltar</a>
+        </div>
+      </div>
+      <div id="end" class="hide">
+        <div class="question">
+          <h1>Obrigado!</h1>
+          
+          <p>Suas informações foram enviadas e assim que um de nossos especialistas estiver disponível, você receberá o nosso contato.</p>
+          <p>Fique a vontade, tire suas dúvidas, veja uma demonstração e saiba como um aplicativo próprio pode te ajudar a crescer muito com seu negócio.</p>
+          <p>Sucesso!</p>
+          
+          <br />
+          <p>Este também são nossos telefones:<br />(11) 98659-8313<br />(11) 4216-3417</p>
+          <p>E-mail:<br />comercial@wabiz.com.br</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <!--<div id="fb-root"></div>-->
+  
+  <!-- Global site tag (gtag.js) - Google Analytics
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3LBCTRTJK"></script> -->
+
+  
+
+  <script src='forge-sha256.min.js'></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'GTM-P2GHVPB');
+  
+    function generateEventId() {
+      var gtmData = window.google_tag_manager['GTM-P2GHVPB'].dataLayer.get('gtm');
+      return gtmData.start + '.' + gtmData.uniqueEventId;
+    }
+
+    
+    function getName(fullName, first_or_last) {
+      var firstName = fullName.split(' ').slice(0, -1).join(' ');
+      var lastName = fullName.split(' ').slice(-1).join(' ');
+      return first_or_last != 'LAST' ? firstName : lastName;
+    }
+    
+    function trackContact(event, name, email, phone) {
+      gtag('event', event,
+      {
+        'x-fb-event_id': generateEventId(),
+        user_data: {
+          email_address: forge_sha256(email),
+          phone_number: forge_sha256(phone),
+          address: {
+            first_name: forge_sha256(getName(name, 'FIRST')),
+            last_name: forge_sha256(getName(name, 'LAST')),
+            /*city: forge_sha256('<HASHED DATA>'),
+            region: forge_sha256('<HASHED_DATA>'),
+            postal_code: forge_sha256('<HASHED_DATA>'),
+            country: forge_sha256('Brazil')*/     
+          }    
+        }
+      });  
+      
+    }
+
+    
+  </script>
+  <script type="text/javascript" src="script.js?d=202207280945"></script>  
+</html>

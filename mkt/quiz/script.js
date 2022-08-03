@@ -163,6 +163,12 @@ function zap() {
 	var customParam = qs.get('c_p');
 	if(customParam != null) {
 		message += " " + customParam;
+	}
+	else {
+		var pathParts = window.location.pathname.split("/");
+		if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
+			message += " [estrategia-davi]";
+		}
 	}	
 	
 	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
