@@ -158,7 +158,7 @@ function send() {
 function zap() {
 	
 	var message = "Olá! Sou " + result.name + ", " + result.perfil.toLowerCase() + " (" + result.type + ") e " + result.orders.toLowerCase() + ". Gostaria de mais informações.";
-
+	var obrigadoPage = 'obrigado.html';
 	var qs = new URLSearchParams(window.location.search);
 	var customParam = qs.get('c_p');
 	if(customParam != null) {
@@ -168,6 +168,7 @@ function zap() {
 		var pathParts = window.location.pathname.split("/");
 		if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
 			message += " [estrategia-davi]";
+			obrigadoPage = "obrigado-estrategia-davi.html";
 		}
 	}	
 	
@@ -176,6 +177,6 @@ function zap() {
 	trackContact('Contact', result.name, result.email, result.phone);
 
 	setTimeout(function() {
-		window.location.href='obrigado.html'
+		window.location.href=obrigadoPage;
 	}, 1000);
 }
