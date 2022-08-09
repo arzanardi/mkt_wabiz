@@ -134,7 +134,7 @@ function send() {
 					//document.getElementById("end").classList.remove("hide");
 
 					//trackContact('Lead', name, email, phone);
-					zap(data);
+					zap();
 				  },
 				  error: function(data) {
 					alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
@@ -155,39 +155,28 @@ function send() {
 	
 }
 
-function zap(data) {
+function zap() {
 	
+	var message = "Olá! Sou " + result.name + ", " + result.perfil.toLowerCase() + " (" + result.type + ") e " + result.orders.toLowerCase() + ". Gostaria de mais informações.";
 	var obrigadoPage = 'obrigado.html';
 	var qs = new URLSearchParams(window.location.search);
 	var customParam = qs.get('c_p');
 	if(customParam != null) {
-		
+		message += " " + customParam;
 	}
 	else {
 		var pathParts = window.location.pathname.split("/");
 		if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
+			message += " [estrategia-davi]";
 			obrigadoPage = "obrigado-estrategia-davi.html";
 		}
 	}	
-
-	$.ajax({
-		type: "POST",
-		url: "https://appdelivery.wabiz.com.br/mkt/send.php",
-		dataType: "json",
-		contentType: "application/json",
-		data: data.value[0],
-		async: false,
-		success: function (data) {
-			setTimeout(function() {
-				window.location.href=obrigadoPage;
-			}, 1000);
-		},
-		error: function(data) {
-		  alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
-		}
-	});
+	
+	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
 
 	trackContact('Contact', result.name, result.email, result.phone);
 
-	
+	setTimeout(function() {
+		window.location.href=obrigadoPage;
+	}, 1000);
 }
