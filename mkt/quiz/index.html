@@ -9,6 +9,12 @@
   <!--<script src="//tag.goadopt.io/injector.js?website_code=30d03d81-f47f-4c43-b56b-df71b5f057ba" class="adopt-injector"></script>-->
   <link rel="stylesheet" href="style.css">
 
+  <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+   />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -109,7 +115,7 @@
         <div class="answer">
           <input type="text" id="name-answer" placeholder="NOME" />
           <input type="email" id="email-answer" placeholder="E-MAIL" />
-          <input type="tel" id="phone-answer" placeholder="TELEFONE" />
+          <input type="tel" id="phone-answer" placeholder="DDD + Nº WHATSAPP" />
           <div style="color: #FFF; font-size: .8em;">Ao clicar para enviar você consente com nossa <a href="#" style="color: #d7ff5b">política de privacidade</a></div>
           <button id="send" class="btn" onclick="send()">
             ⇨ QUERO CONVERSAR COM UM ESPECIALISTA  ⇦
@@ -145,11 +151,12 @@
 
   <script src='forge-sha256.min.js'></script>
   <script>
+
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'GTM-P2GHVPB');
+    gtag('config', 'GTM-P2GHVPB');    
   
     function generateEventId() {
       var gtmData = window.google_tag_manager['GTM-P2GHVPB'].dataLayer.get('gtm');
@@ -182,8 +189,10 @@
       });  
       
     }
-
     
+   
+
   </script>
   <script type="text/javascript" src="script.js?d=202208091703"></script>  
+  
 </html>

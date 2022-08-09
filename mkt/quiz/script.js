@@ -1,4 +1,11 @@
-var result = {
+const phoneInputField = document.querySelector("#phone-answer");
+const phoneInput = window.intlTelInput(phoneInputField, {
+	initialCountry: "br",
+	utilsScript:
+	"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+	
+	var result = {
 	name: null,
 	email: null,
 	phone: null,
@@ -79,7 +86,7 @@ function goBack(fase) {
 function send() {
 	var name = document.getElementById("name-answer").value;
 	var email = document.getElementById("email-answer").value;
-	var phone = document.getElementById("phone-answer").value;
+	var phone = phoneInput.getNumber();
 	if(name != null && email != null && phone != null) {
 		if((name.trim() != "" && name.trim().length > 3) && (email.trim() != "" && email.trim().length > 3) && (phone.trim() != "" && phone.trim().length > 7)) {
 
