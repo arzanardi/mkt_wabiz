@@ -171,12 +171,10 @@ function zap(data) {
 	}	
 
 	$.ajax({
-		type: "POST",
-		url: "https://appdelivery.wabiz.com.br/mkt/send.php",
-		dataType: "json",
-		contentType: "application/json",
-		data: data.value[0],
+		type: "GET",
+		url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(data.value[0]["contact"]),
 		async: false,
+		crossDomain: true,
 		success: function (data) {
 			setTimeout(function() {
 				window.location.href=obrigadoPage;
