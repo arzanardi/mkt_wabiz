@@ -88,7 +88,7 @@ function send() {
 	var email = document.getElementById("email-answer").value;
 	var phone = phoneInput.getNumber();
 	if(name != null && email != null && phone != null) {
-		if((name.trim() != "" && name.trim().length > 3) && (email.trim() != "" && email.trim().length > 3) && (phone.trim() != "" && phone.trim().length > 7)) {
+		if((name.trim() != "" && name.trim().length > 3) && (email.trim() != "" && email.trim().length > 3) && (phoneInput.isValidNumber())) {
 
 			result.name = name;
 			result.email = email;
