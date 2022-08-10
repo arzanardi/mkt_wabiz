@@ -39,7 +39,8 @@ function goType(button) {
 
 var typeButtons = document.getElementsByName("type-answer");
 for(const b of typeButtons) {
-	b.addEventListener("click", function() { goOrders(b) });
+	//b.addEventListener("click", function() { goOrders(b) });
+	b.addEventListener("click", function() { goName(b) });
 }
 
 function goOrders(button) {
@@ -60,14 +61,16 @@ function goName(button) {
 
 	document.querySelector('body').style.justifyContent = 'normal';
 
-	document.getElementById("orders").classList.add("hide");
+	//document.getElementById("orders").classList.add("hide");
+	document.getElementById("type").classList.add("hide");
 	document.getElementById("name").classList.remove("hide");
 
+	/*
 	result.orders = result.ordersValue = button.innerText;
 	if(button.id != "orders-0") {
 		result.orders = "recebo em média " + button.innerText + " pedidos diariamente";
 	}
-	
+	*/
 }
 
 function goBack(fase) {
@@ -94,6 +97,9 @@ function send() {
 	if(name != null && email != null && phone != null) {
 		if((name.trim() != "" && name.trim().length > 3) && (email.trim() != "" && email.trim().length > 3) && (phoneInput.isValidNumber())) {
 
+			document.getElementById("name").classList.add("hide");
+			document.getElementById("sending").classList.remove("hide");
+
 			result.name = name;
 			result.email = email;
 			result.phone = phone;
@@ -114,11 +120,13 @@ function send() {
 					  {
 						  "titulo": "Tipo de Estabelecimento",
 						  "valor": result.type
-					  },
+					  }
+					  /*,
 					  {
 						  "titulo": "Pedidos",
 						  "valor": result.ordersValue
 					  }
+					  */
 					],
 					"empresa": {
 					  "nome": result.name
@@ -148,6 +156,9 @@ function send() {
 					zap(data);
 				  },
 				  error: function(data) {
+					document.getElementById("name").classList.remove("hide");
+					document.getElementById("sending").classList.add("hide");
+					$("#send").show();
 					alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
 				  }
 			  });
@@ -157,11 +168,18 @@ function send() {
 			
 		}
 		else {
-			alert("Por favor, informe seus dados corretamente!");
+			if(phoneInput.isValidNumber()) {
+				alert("Por favor, informe seus dados corretamente!");
+			}
+			else {
+				alert("Por favor, informe o número do seu WhatsApp com DDD!");
+			}
+			$("#send").show();
 		}
 	}
 	else {
 		alert("Por favor, informe seus dados!");
+		$("#send").show();
 	}
 	
 }
@@ -192,7 +210,10 @@ function zap(data) {
 			}, 1000);
 		},
 		error: function(data) {
-		  alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
+		  //alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
+		  setTimeout(function() {
+			window.location.href=obrigadoPage;
+		}, 1000);
 		}
 	});
 
