@@ -23,7 +23,7 @@ function goPerfil() {
 
 var perfilButtons = document.getElementsByName("perfil-answer");
 for(const b of perfilButtons) {
-	b.addEventListener("click", function() { goType(b) });
+	b.addEventListener("click", function() { goName(b) });
 }
 
 function goType(button) {
@@ -32,7 +32,7 @@ function goType(button) {
 	}
 	document.querySelector('body').style.justifyContent = 'normal';
 	document.getElementById("perfil").classList.add("hide");
-	document.getElementById("type").classList.remove("hide");
+	document.getElementById("name").classList.remove("hide");
 
 	result.perfil = button.innerText;
 }
@@ -59,10 +59,10 @@ for(const b of ordersButtons) {
 
 function goName(button) {
 
-	document.querySelector('body').style.justifyContent = 'normal';
+	//document.querySelector('body').style.justifyContent = 'normal';
 
 	//document.getElementById("orders").classList.add("hide");
-	document.getElementById("type").classList.add("hide");
+	document.getElementById("perfil").classList.add("hide");
 	document.getElementById("name").classList.remove("hide");
 
 	/*
@@ -85,10 +85,11 @@ function goBack(fase) {
 	document.getElementById(fase).classList.remove("hide");
 
 }
-
+var x = 0;
 function send() {
 
 	$("#send").hide();
+	console.log(x++); 
 
 	var name = document.getElementById("name-answer").value;
 	var email = document.getElementById("email-answer").value;
