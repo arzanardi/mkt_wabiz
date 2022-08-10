@@ -84,9 +84,13 @@ function goBack(fase) {
 }
 
 function send() {
+
+	$("#send").hide();
+
 	var name = document.getElementById("name-answer").value;
 	var email = document.getElementById("email-answer").value;
 	var phone = phoneInput.getNumber();
+
 	if(name != null && email != null && phone != null) {
 		if((name.trim() != "" && name.trim().length > 3) && (email.trim() != "" && email.trim().length > 3) && (phoneInput.isValidNumber())) {
 
