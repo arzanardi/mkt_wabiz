@@ -118,15 +118,15 @@ function send() {
 						"titulo": "Perfil",
 						"valor": result.perfil
 					  },
-					  {
+					  /*{
 						  "titulo": "Tipo de Estabelecimento",
 						  "valor": result.type
 					  }
-					  /*,
+					  ,
 					  {
 						  "titulo": "Pedidos",
 						  "valor": result.ordersValue
-					  }
+					  },
 					  */
 					],
 					"empresa": {
@@ -140,29 +140,40 @@ function send() {
 				  }
 				]
 			  }
+
+			var qs = new URLSearchParams(window.location.search);
+			var customParam = qs.get('c_p');
+			if(customParam != null) {
+				opps.oportunidades.personalizados.push(
+					{
+						"titulo": "Campanha",
+						"valor": customParam
+					}
+				);
+			}
 			  
-			  $.ajax({
-				  type: "POST",
-				  url: "https://app.funildevendas.com.br/api/Opportunity?IntegrationKey=c8cbef34-9d30-48fc-8fee-f6ae17f21de2",
-				  dataType: "json",
-				  contentType: "application/json",
-				  data: JSON.stringify(opps),
-				  async: false,
-				  success: function (data) {
+			$.ajax({
+				type: "POST",
+				url: "https://app.funildevendas.com.br/api/Opportunity?IntegrationKey=c8cbef34-9d30-48fc-8fee-f6ae17f21de2",
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify(opps),
+				async: false,
+				success: function (data) {
 					//document.getElementById("name").classList.add("hide");
 		
 					//document.getElementById("end").classList.remove("hide");
 
 					//trackContact('Lead', name, email, phone);
 					zap(data);
-				  },
-				  error: function(data) {
+				},
+				error: function(data) {
 					document.getElementById("name").classList.remove("hide");
 					document.getElementById("sending").classList.add("hide");
 					$("#send").show();
 					alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
-				  }
-			  });
+				}
+			});
 
 			
 
@@ -190,19 +201,17 @@ function zap(data) {
 	var obrigadoPage = 'obrigado.html';
 	var qs = new URLSearchParams(window.location.search);
 	var customParam = qs.get('c_p');
-	if(customParam != null) {
-		
-	}
-	else {
+	if(customParam == null) {
 		var pathParts = window.location.pathname.split("/");
 		if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
+			customParam = "[estrategia-davi]";
 			obrigadoPage = "obrigado-estrategia-davi.html";
 		}
 	}	
 
 	$.ajax({
 		type: "GET",
-		url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(data.value[0]["contact"]),
+		url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(data.value[0]["contact"]) + "&c_p=" + customParam,
 		async: false,
 		crossDomain: true,
 		success: function (data) {
