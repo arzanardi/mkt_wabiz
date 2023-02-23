@@ -1,3 +1,6 @@
+<?php
+$cache = "202211290836";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,7 +10,7 @@
   <meta name="adopt-website-id" content="30d03d81-f47f-4c43-b56b-df71b5f057ba" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <!--<script src="//tag.goadopt.io/injector.js?website_code=30d03d81-f47f-4c43-b56b-df71b5f057ba" class="adopt-injector"></script>-->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?d=<?php echo $cache ?>">
 
   <link
      rel="stylesheet"
@@ -167,7 +170,6 @@
       var gtmData = window.google_tag_manager['GTM-P2GHVPB'].dataLayer.get('gtm');
       return gtmData.start + '.' + gtmData.uniqueEventId;
     }
-
     
     function getName(fullName, first_or_last) {
       var firstName = fullName.split(' ').slice(0, -1).join(' ');
@@ -198,6 +200,6 @@
    
 
   </script>
-  <script type="text/javascript" src="script.js?d=202208241209"></script>  
+  <script type="text/javascript" src="script.js?d=<?php echo $cache ?>"></script>  
   
 </html>

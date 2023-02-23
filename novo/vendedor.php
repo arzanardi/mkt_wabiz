@@ -12,16 +12,21 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/intlTelInput.css">
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
       .gradient {
         background: linear-gradient(90deg, #3f8b8c 0%, #5bb75b 100%);
       }
 
-        .pt-24 {
-         padding-top: 0rem;
-         padding-bottom: 100px;
-        }
+      .pt-24 {
+        padding-top: 0rem;
+        padding-bottom: 100px;
+      }
+
+      .iti__flag-box, .iti__country-name {
+        color: black;
+      }
     </style>
 
     <script src='cidades-estados.js'></script>
@@ -39,10 +44,54 @@
             </p>
             
             <div id="form" style="width: 100%;">
-              <h2 class="my-4 text-3xl font-bold leading-tight">Informe os dados do cliente:</h1>
+              <h2 class="my-4 text-3xl font-bold leading-tight">Informe os dados do cliente:</h2>
               <div class="w-full pb-5">              
                 <label for="estabelecimento_nome" class="block font-medium">Nome do estabelecimento</label>
                 <input type="text" id="estabelecimento_nome" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="documentoCNPJ" class="block font-medium">CNPJ</label>
+                <input type="text" id="documentoCNPJ" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="documentoCPF" class="block font-medium">CPF</label>
+                <input type="text" id="documentoCPF" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="documentoRG" class="block font-medium">RG</label>
+                <input type="text" id="documentoRG" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="estabelecimento_telefone" class="block font-medium">Telefone do Estabelecimento</label>
+                <input type="tel" id="estabelecimento_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="proprietario_nome" class="block font-medium">Nome do Proprietário</label>
+                <input type="text" id="proprietario_nome" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="proprietario_telefone" class="block font-medium">Melhor Telefone para Contato (WhatsApp)</label>
+                <input type="tel" id="proprietario_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase"/>
+              </div>
+              <div class="w-full pb-5">              
+                <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
+                <input type="text" id="proprietario_email" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="endereco" class="block font-medium">Endereço</label>
+                <input type="text" id="endereco" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>
+              <div class="w-full pb-5">              
+                <label for="endereco_num" class="block font-medium">Número</label>
+                <input type="text" id="endereco_num" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>              
+              <div class="w-full pb-5">              
+                <label for="endereco_compl" class="block font-medium">Complemento</label>
+                <input type="text" id="endereco_compl" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+              </div>          
+              <div class="w-full pb-5">              
+                <label for="endereco_bairro" class="block font-medium">Bairro</label>
+                <input type="text" id="endereco_bairro" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
               </div>
               <div class="w-full pb-5">              
                 <label for="estado" class="block font-medium">Estado</label>
@@ -52,25 +101,30 @@
                 <label for="cidade" class="block font-medium">Cidade</label>
                 <select id="cidade" class="form-input px-3 py-3 rounded text-black w-full uppercase"></select>
               </div>
+              <h2 class="my-4 text-3xl font-bold leading-tight">Produtos:</h2>
               <div class="w-full pb-5">              
-                <label for="documento" class="block font-medium">CNPJ</label>
-                <input type="text" id="documento" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+                <label for="produtos" class="block font-medium">Selecione os produtos adquiridos</label>
+                <input type="checkbox" id="produto_weblink" value="S" class="w-4 h-4 text-blue-600 bg-gray-100 rounded" /> WebLink<br />
+                <input type="checkbox" id="produto_android" value="S" class="w-4 h-4 text-blue-600 bg-gray-100 rounded" /> Android<br />
+                <input type="checkbox" id="produto_ios" value="S" class="w-4 h-4 text-blue-600 bg-gray-100 rounded" /> iOS (Apple)<br />                
+              </div>              
+              <h2 class="my-4 text-3xl font-bold leading-tight">Financeiro:</h2>
+              <div class="w-full pb-5">              
+                <label for="valor_adesao" class="block font-medium">Valor da Adesão</label>
+                <input type="text" id="valor_adesao" class="currency form-input px-3 py-3 rounded text-black w-full uppercase" />
               </div>
               <div class="w-full pb-5">              
-                <label for="estabelecimento_telefone" class="block font-medium">Telefone do Estabelecimento</label>
-                <input type="text" id="estabelecimento_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+                <label for="formPagamento" class="block font-medium">Forma de Pagamento</label>
+                <select id="formPagamento" class="form-input px-3 py-3 rounded text-black w-full uppercase">
+                  <option value="PIX" selected="selected">PIX</option>
+                  <option value="CreditCard">Cartão de Crédito</option>                  
+                  <option value="Boleto">Boleto</option>
+                  <option value="Boleto 2x">Boleto 2x</option>
+                </select>
               </div>
               <div class="w-full pb-5">              
-                <label for="proprietario_nome" class="block font-medium">Nome do Proprietário</label>
-                <input type="text" id="proprietario_nome" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
-              </div>
-              <div class="w-full pb-5">              
-                <label for="proprietario_telefone" class="block font-medium">Melhor Telefone para Contato</label>
-                <input type="text" id="proprietario_telefone" class="form-input px-3 py-3 rounded text-black w-full uppercase" value="+55" onfocus="javascript: this.setSelectionRange(1000, 1000);"/>
-              </div>
-              <div class="w-full pb-5">              
-                <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
-                <input type="text" id="proprietario_email" class="form-input px-3 py-3 rounded text-black w-full uppercase" />
+                <label for="valor_mensalidade" class="block font-medium">Valor da Mensalidade</label>
+                <input type="text" id="valor_mensalidade" class="currency form-input px-3 py-3 rounded text-black w-full uppercase" />
               </div>
               <!--
               <div class="w-full pb-5">              
@@ -89,12 +143,16 @@
               <div class="text-2xl font-bold dataValue" id="estabelecimento_nome"></div>
             </div>
             <div class="w-full pb-3">              
-              <label for="cidade" class="block font-medium">Nome do estabelecimento</label>
-              <div class="text-2xl font-bold dataValue" id="cidade"></div>
+              <label for="documentoCNPJ" class="block font-medium">CNPJ</label>
+              <div class="text-2xl font-bold dataValue" id="documentoCNPJ"></div>
             </div>
             <div class="w-full pb-3">              
-              <label for="documento" class="block font-medium">CNPJ</label>
-              <div class="text-2xl font-bold dataValue" id="documento"></div>
+              <label for="documentoCPF" class="block font-medium">CPF</label>
+              <div class="text-2xl font-bold dataValue" id="documentoCPF"></div>
+            </div>
+            <div class="w-full pb-3">              
+              <label for="documentoRG" class="block font-medium">RG</label>
+              <div class="text-2xl font-bold dataValue" id="documentoRG"></div>
             </div>
             <div class="w-full pb-3">              
               <label for="estabelecimento_telefone" class="block font-medium">Telefone do Estabelecimento</label>
@@ -112,7 +170,28 @@
               <label for="proprietario_email" class="block font-medium">Melhor E-mail para contato</label>
               <div class="text-2xl font-bold dataValue" id="proprietario_email"></div>
             </div>
+            <div class="w-full pb-3">              
+              <label for="endereco" class="block font-medium">Endereço</label>
+              <div class="text-2xl font-bold dataValue" id="endereco"></div>
+            </div>    
+            <div class="w-full pb-3">              
+              <label for="cidade" class="block font-medium">Cidade</label>
+              <div class="text-2xl font-bold dataValue" id="cidade"></div>
+            </div>
+            <div class="w-full pb-3">              
+              <label for="produtos" class="block font-medium">Produtos</label>
+              <div class="text-2xl font-bold dataValue" id="produtos"></div>
+            </div>
+            <div class="w-full pb-3">              
+              <label for="valor_adesao" class="block font-medium">Valor Adesão</label>
+              <div class="text-2xl font-bold dataValue" id="valor_adesao"></div>
+            </div>
+            <div class="w-full pb-3">              
+              <label for="valor_mensalidade" class="block font-medium">Valor Mensalidade</label>
+              <div class="text-2xl font-bold dataValue" id="valor_mensalidade"></div>
+            </div>
             <button id="buttonReady" onclick="editar()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;">Editar</button>
+            <button id="buttonReady" onclick="sendMail()" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out;" style="text-transform: uppercase;">Enviar por E-mail</button>
           </div>
         </div>
         <!--Right Col-->
@@ -170,18 +249,30 @@
     cidade: document.getElementById('cidade'),
     estado: document.getElementById('estado'),
     estadoVal: 25,
-    cidadeVal: 'São Paulo'
+    cidadeVal: 'São Paulo-SP'
   });
 
   function getLink() {
     params = {
       estabelecimento_nome: document.querySelector("input#estabelecimento_nome").value.toUpperCase(),
       estabelecimento_telefone: document.querySelector("input#estabelecimento_telefone").value.toUpperCase(),
-      documento: document.querySelector("input#documento").value.toUpperCase(),
+      documentoCNPJ: document.querySelector("input#documentoCNPJ").value.toUpperCase(),
+      documentoCPF: document.querySelector("input#documentoCPF").value.toUpperCase(),
+      documentoRG: document.querySelector("input#documentoRG").value.toUpperCase(),
       proprietario_nome: document.querySelector("input#proprietario_nome").value.toUpperCase(),
       proprietario_telefone: document.querySelector("input#proprietario_telefone").value.toUpperCase(),
       proprietario_email: document.querySelector("input#proprietario_email").value.toUpperCase(),
+      endereco: document.querySelector("input#endereco").value.toUpperCase(),
+      endereco_num: document.querySelector("input#endereco_num").value.toUpperCase(),
+      endereco_compl: document.querySelector("input#endereco_compl").value.toUpperCase(),
+      endereco_bairro: document.querySelector("input#endereco_bairro").value.toUpperCase(),
       cidade: document.querySelector("select#cidade").value.toUpperCase(),
+      produto_weblink: document.querySelector("input#produto_weblink").checked ? "S" : "N",
+      produto_android: document.querySelector("input#produto_android").checked ? "S" : "N",
+      produto_ios: document.querySelector("input#produto_ios").checked ? "S" : "N",
+      formaPagamento: document.querySelector("select#formPagamento").value.toUpperCase(),
+      valor_adesao: document.querySelector("input#valor_adesao").value.toUpperCase(),
+      valor_mensalidade: document.querySelector("input#valor_mensalidade").value.toUpperCase(),
       /*proprietario_genero: document.querySelector("select#proprietario_genero").value.toUpperCase()*/
     };
 
@@ -196,7 +287,7 @@
 
     var data = btoa(JSON.stringify(params));
 
-    var link = location.protocol + '//'+location.host+'/cliente/?data='+data;
+    var link = location.protocol + '//'+location.host+'/app/novo/?data='+data;
 
     navigator.clipboard.writeText(link);
 
@@ -207,11 +298,23 @@
 
     document.querySelector("div#estabelecimento_nome").innerHTML = params.estabelecimento_nome;
     document.querySelector("div#estabelecimento_telefone").innerHTML = params.estabelecimento_telefone;
-    document.querySelector("div#documento").innerHTML = params.documento;
+    document.querySelector("div#documentoCNPJ").innerHTML = params.documentoCNPJ;
+    document.querySelector("div#documentoCPF").innerHTML = params.documentoCPF;
+    document.querySelector("div#documentoRG").innerHTML = params.documentoRG;
     document.querySelector("div#proprietario_nome").innerHTML = params.proprietario_nome;
     document.querySelector("div#proprietario_telefone").innerHTML = params.proprietario_telefone;
     document.querySelector("div#proprietario_email").innerHTML = params.proprietario_email;
+    document.querySelector("div#endereco").innerHTML = params.endereco + ", " + params.endereco_num + (params.endereco_compl != "" ? " " + params.endereco_compl : "") + " - " + params.endereco_bairro;
     document.querySelector("div#cidade").innerHTML = params.cidade;
+    document.querySelector("div#valor_adesao").innerHTML = params.valor_adesao + " (" + params.formaPagamento + ")";
+    document.querySelector("div#valor_mensalidade").innerHTML = params.valor_mensalidade;
+
+    var produtos = [];
+    if(params.produto_weblink == "S") produtos.push("WEBLINK");
+    if(params.produto_android == "S") produtos.push("ANDROID");
+    if(params.produto_ios == "S") produtos.push("IOS");
+
+    document.querySelector("div#produtos").innerHTML = produtos.join(" + ");
 
     document.getElementById("dados").style.display = 'block';
 
@@ -221,6 +324,111 @@
     document.getElementById('form').style.display = 'block';    
 
     document.getElementById("dados").style.display = 'none';
+  }
+
+</script>
+<script src="js/intlTelInput.js"></script>
+<script src="js/utils.js"></script>
+<script src="https://unpkg.com/imask"></script>
+<script>
+  var telEstabelecimento = document.querySelector("input#estabelecimento_telefone");
+  var telProprietario = document.querySelector("input#proprietario_telefone");
+  window.intlTelInput(telEstabelecimento, {
+    initialCountry: 'br'
+  });
+  window.intlTelInput(telProprietario, {
+    initialCountry: 'br'
+  });
+
+  IMask(telEstabelecimento, {
+    mask: [
+      {
+        mask: '(00) 0000-0000',
+        maxLength: 10
+      },
+      {
+        mask: '(00) 00000-0000'
+      }
+    ]
+  });
+
+  IMask(telProprietario, {
+    mask: [
+      {
+        mask: '(00) 0000-0000',
+        maxLength: 10
+      },
+      {
+        mask: '(00) 00000-0000'
+      }
+    ]
+  });
+
+  var maskCpfOuCnpj = IMask(document.getElementById('documentoCNPJ'), {
+			mask:[				
+				{
+					mask: '00.000.000/0000-00',
+          maxLength: 14
+				}
+			]
+  });
+
+  var maskCpfOuCnpj = IMask(document.getElementById('documentoCPF'), {
+			mask:[
+				{
+					mask: '000.000.000-00',
+					maxLength: 11
+				}
+			]
+  });
+
+  var maskCpfOuCnpj = IMask(document.getElementById('documento'), {
+			mask:[
+				{
+					mask: '000.000.000-00',
+					maxLength: 11
+				},
+				{
+					mask: '00.000.000/0000-00'
+				}
+			]
+  });
+
+  var currencyMask = [{
+    mask: 'R$ num{,}`cents',
+    blocks: {
+      num: {
+        mask: Number,
+        signed: true,
+        scale: 0
+      },
+      cents: {
+        mask: '`0`0',
+        normalizeZeros: true,
+        padFractionalZeros: true,
+      }
+    },
+    overwrite: true
+  }];
+  var valor_adesao = IMask(document.getElementById("valor_adesao"), {
+    mask:currencyMask
+  });
+
+  var valor_mensalidade = IMask(document.getElementById("valor_mensalidade"), {
+    mask:currencyMask
+  });
+
+  function sendMail() {
+    var mensagem = "Dados do Cliente\n\n";
+    var assunto = "Venda";
+    var partes = document.querySelector("#dados").innerText.split("\n").slice(1).slice(0, -1);
+    var i = 0;
+    while(i < partes.length) {
+      mensagem += "▶ " + partes[i] + ": " + partes[i+1] + "\n";
+      i = i + 2;
+    }
+
+    window.open("mailto:dev@wabiz.com.br?subject="+assunto+"&body=" + encodeURIComponent(mensagem));
   }
 
 </script>

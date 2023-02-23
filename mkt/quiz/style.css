@@ -18,9 +18,14 @@ body {
 	width: 100vw;
 	height: 100vh;
 	background-image: url("mobile.webp");
+	
 	background-position: center right -150px;
 	background-repeat: no-repeat;
 	background-size: cover;
+	/*background-image: url("black-friday.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #000;*/
 }
 
 .container {

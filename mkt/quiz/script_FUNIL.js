@@ -107,38 +107,79 @@ function send() {
 
 				result.name = name;
 				result.email = email;
-				result.phone = phone;							
-				
-				var obrigadoPage = 'obrigado.html';
+				result.phone = phone;
+
+				var opps = {
+					"oportunidades": [
+					{
+						"titulo": result.name,
+						"valor": 650,
+						"codigo_vendedor": 16343,
+						"codigo_metodologia": 5341,
+						"codigo_canal_venda": 88657,
+						"personalizados": [
+						{
+							"titulo": "Perfil",
+							"valor": result.perfil
+						},
+						/*{
+							"titulo": "Tipo de Estabelecimento",
+							"valor": result.type
+						}
+						,
+						{
+							"titulo": "Pedidos",
+							"valor": result.ordersValue
+						},
+						*/
+						],
+						"empresa": {
+							"nome": result.name
+						},
+						"contato": {
+						"nome": result.name,
+						"email": result.email,
+						"telefone1": result.phone
+						}
+					}
+					]
+				}
+
 				var qs = new URLSearchParams(window.location.search);
 				var customParam = qs.get('c_p');
-				if(customParam == null) {
-					var pathParts = window.location.pathname.split("/");
-					if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
-						customParam = "[estrategia-davi]";
-						obrigadoPage = "obrigado-estrategia-davi.html";
-					}
-				}	
-
+				if(customParam != null) {
+					opps.oportunidades[0].personalizados.push(
+						{
+							"titulo": "Campanha",
+							"valor": customParam
+						}
+					);
+				}
+				
 				$.ajax({
-					type: "GET",
-					url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(result) + "&c_p=" + customParam,
+					type: "POST",
+					url: "https://app.funildevendas.com.br/api/Opportunity?IntegrationKey=c8cbef34-9d30-48fc-8fee-f6ae17f21de2",
+					dataType: "json",
+					contentType: "application/json",
+					data: JSON.stringify(opps),
 					async: false,
-					crossDomain: true,
 					success: function (data) {
-						setTimeout(function() {
-							window.location.href=obrigadoPage;
-						}, 1000);
+						//document.getElementById("name").classList.add("hide");
+			
+						//document.getElementById("end").classList.remove("hide");
+
+						//trackContact('Lead', name, email, phone);
+						zap(data);
 					},
 					error: function(data) {
-					//alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
-					setTimeout(function() {
-						window.location.href=obrigadoPage;
-					}, 1000);
+						document.getElementById("name").classList.remove("hide");
+						document.getElementById("sending").classList.add("hide");
+						$("#send").show();
+						alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
 					}
 				});
 
-				trackContact('Contact', result.name, result.email, result.phone);				
+				
 
 				
 			}
@@ -157,5 +198,46 @@ function send() {
 			$("#send").show();
 		}
 	}, 1000);
+	
+}
+
+function zap(data) {
+	
+	var obrigadoPage = 'obrigado.html';
+	var qs = new URLSearchParams(window.location.search);
+	var customParam = qs.get('c_p');
+	if(customParam == null) {
+		var pathParts = window.location.pathname.split("/");
+		if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
+			customParam = "[estrategia-davi]";
+			obrigadoPage = "obrigado-estrategia-davi.html";
+		}
+	}	
+
+	/*
+	$.ajax({
+		type: "GET",
+		url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(data.value[0]) + "&c_p=" + customParam,
+		async: false,
+		crossDomain: true,
+		success: function (data) {
+			setTimeout(function() {
+				window.location.href=obrigadoPage;
+			}, 1000);
+		},
+		error: function(data) {
+		  //alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
+		  setTimeout(function() {
+			window.location.href=obrigadoPage;
+		}, 1000);
+		}
+	});*/
+
+	setTimeout(function() {
+		window.location.href=obrigadoPage;
+	}, 1000);
+
+	trackContact('Contact', result.name, result.email, result.phone);
+
 	
 }
