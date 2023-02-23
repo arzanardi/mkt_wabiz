@@ -171,7 +171,7 @@
         
     <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>
 
-<!-- Facebook Pixel Code -->
+<!-- Facebook Pixel Code
 <script>
 	!function(f,b,e,v,n,t,s)
 	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -188,12 +188,24 @@
 	<noscript><img height="1" width="1" style="display:none"
 	src="https://www.facebook.com/tr?id=2393615217553142&ev=PageView&noscript=1"
 	/></noscript>
-	<!-- End Facebook Pixel Code -->
+	End Facebook Pixel Code -->
+
+	
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://gtm.wabizdelivery.com/pyowbivt.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-P2GHVPB');</script>
+		<!-- End Google Tag Manager -->
 </head>
         
 <body class="page-template-default page page-id-22934 fl-builder fl-builder-breakpoint-large" style="background-color: rgb(238, 238, 238);">
 
-                
+ <!-- Google Tag Manager (noscript) -->
+ <noscript><iframe src="https://gtm.wabizdelivery.com/ns.html?id=GTM-P2GHVPB"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->               
 <div class="fl-content-full">
                         <div class="row row-first-1">
                             <div class="fl-builder-content fl-builder-content-22934 fl-builder-content-primary fl-builder-global-templates-locked" data-post-id="22934">
@@ -496,6 +508,10 @@
         <script src="./assets/lazyload.min.js"></script>
 
         <script type="text/javascript">
+
+		
+
+			
         jQuery(document).ready(function(){
           (function() {
             var ll = new LazyLoad({
@@ -545,13 +561,35 @@
 			return check;
 		};
 
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'GTM-P2GHVPB');
+
+		function generateEventId() {
+			var gtmData = window.google_tag_manager['GTM-P2GHVPB'].dataLayer.get('gtm');
+			return gtmData.start + '.' + gtmData.uniqueEventId;
+		}
+
 		function callSpecialist() {
 			var target = 'api';
 			if(!isMobile()) {
 				target = 'web'
 			}
 
-			fbq('track', 'Contact');
+			//fbq('track', 'Contact');
+
+			
+
+			var eventId = generateEventId();
+			
+
+			gtag('event', 'contact',
+				{
+					'x-fb-event_id': eventId
+				}
+			);
 
 			window.open('https://' + target + ".whatsapp.com/send?phone=5511986598313&text=Ol%C3%A1%2C%20acabei%20de%20assistir%20a%20demonstra%C3%A7%C3%A3o%20online%20sobre%20o%20aplicativo%20e%20gostaria%20de%20falar%20com%20um%20especialista%21%20%5BE%5D")
 		}
