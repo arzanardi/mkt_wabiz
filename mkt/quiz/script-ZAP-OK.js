@@ -90,28 +90,6 @@ function goBack(fase) {
 
 }
 var x = 0;
-
-var qs = new URLSearchParams(window.location.search);
-var utm_source = qs.get('utm_source');
-var utm_medium = qs.get('utm_medium');
-var utm_content = qs.get('utm_content');
-var utm_campaign = qs.get('utm_campaign');
-var utm_term = qs.get('utm_term');
-var customParam = qs.get('c_p');
-
-var channelBotConversa = 33280;
-var channelFacebook = 84915;
-var channelGoogle = 93961;
-
-var currentChannel = channelBotConversa;
-if(utm_source !== null) {
-	if(utm_source.toLowerCase() == "fbads") currentChannel = channelFacebook;
-	else if(utm_source.toLowerCase() == "goads") currentChannel = channelGoogle;
-}
-
-var obrigadoPage = 'obrigado.html';
-var customParam = qs.get('c_p');
-
 function send() {
 
 	$("#send").hide();
@@ -129,111 +107,47 @@ function send() {
 
 				result.name = name;
 				result.email = email;
-				result.phone = phone;
-
-				var opps = {
-					"oportunidades": [
-						{
-							"titulo": result.name,
-							"valor": 650,
-							"codigo_vendedor": 16343, //Neto: 57649 | Wildes: 16343,
-							"codigo_metodologia": 18043, //LATAM: 18959,
-							"codigo_canal_venda": currentChannel,
-							"personalizados": [
-								{
-									"titulo": "Perfil",
-									"valor": result.perfil
-								},
-								/*{
-									"titulo": "Tipo de Estabelecimento",
-									"valor": result.type
-								}
-								,
-								{
-									"titulo": "Pedidos",
-									"valor": result.ordersValue
-								},
-								*/
-								{
-									"titulo": "Campanha",
-									"valor": customParam
-								},
-								{
-									"titulo": "utm_source",
-									"valor": utm_source
-								},
-								{
-									"titulo": "utm_medium",
-									"valor": utm_medium
-								},
-								{
-									"titulo": "utm_content",
-									"valor": utm_content
-								},
-								{
-									"titulo": "utm_campaign",
-									"valor": utm_campaign
-								},
-								{
-									"titulo": "utm_term",
-									"valor": utm_term
-								}
-							],
-							"empresa": {
-								"nome": result.name
-							},
-							"contato": {
-							"nome": result.name,
-							"email": result.email,
-							"telefone1": result.phone
-							}
-						}
-					]
-				}
-
-				/*
-
+				result.phone = phone;							
+				
+				var obrigadoPage = 'obrigado.html';
 				var qs = new URLSearchParams(window.location.search);
 				var customParam = qs.get('c_p');
-				if(customParam != null) {
-					opps.oportunidades[0].personalizados.push(
-						{
-							"titulo": "Campanha",
-							"valor": customParam
-						}
-					);
+				if(customParam == null) {
+					var pathParts = window.location.pathname.split("/");
+					if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
+						customParam = "[estrategia-davi]";
+						obrigadoPage = "obrigado-estrategia-davi.html";
+					}
 				}
+				
+				/*
+				var utm_source = qs.get('utm_source');
+				var utm_medium = qs.get('utm_medium');
+				var utm_content = qs.get('utm_content');
+				var utm_campaign = qs.get('utm_campaign');
+				var utm_term = qs.get('utm_term');
 
-				*/
-								
 				$.ajax({
-					type: "POST",
-					url: "https://app.funildevendas.com.br/api/Opportunity?IntegrationKey=c8cbef34-9d30-48fc-8fee-f6ae17f21de2",
-					dataType: "json",
-					contentType: "application/json",
-					data: JSON.stringify(opps),
+					type: "GET",
+					url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(result) + "&c_p=" + customParam + "&utm_source="+utm_source+"&utm_medium="+utm_medium+"&utm_content="+utm_content+"&utm_campaign="+utm_campaign+"&utm_term="+utm_term,
 					async: false,
+					crossDomain: true,
 					success: function (data) {
-						//document.getElementById("name").classList.add("hide");
-			
-						//document.getElementById("end").classList.remove("hide");
-
-						//trackContact('Lead', name, email, phone);
-						
-						//zap(data);
-						result.codigoOportunidade = data.value[0].code;
-						botConversa();
+						setTimeout(function() {
+							window.location.href=obrigadoPage;
+						}, 1000);
 					},
 					error: function(data) {
-						document.getElementById("name").classList.remove("hide");
-						document.getElementById("sending").classList.add("hide");
-						$("#send").show();
-						alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
+					//alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
+					setTimeout(function() {
+						window.location.href=obrigadoPage;
+					}, 1000);
 					}
 				});
-
 				
 
+				trackContact('Contact', result.name, result.email, result.phone);	*/			
+				zap(result);
 				
 			}
 			else {
@@ -254,12 +168,22 @@ function send() {
 	
 }
 
-function zap(data) {
+function zap(result) {
 	
 	var message = "Olá! Sou " + result.name + ", " + result.perfil.toLowerCase() + ". Gostaria de mais informações.";
+	var obrigadoPage = 'obrigado.html';
+	var qs = new URLSearchParams(window.location.search);
+	var customParam = qs.get('c_p');
 	if(customParam != null) {
 		message += " " + customParam;
 	}
+	else {
+		var pathParts = window.location.pathname.split("/");
+		if(pathParts[pathParts.length-1] == "estrategia-davi.html") {
+			message += " [estrategia-davi]";
+			obrigadoPage = "obrigado-estrategia-davi.html";
+		}
+	}	
 	
 	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
 
@@ -268,28 +192,4 @@ function zap(data) {
 	setTimeout(function() {
 		window.location.href=obrigadoPage;
 	}, 1000);
-	
-}
-
-
-function botConversa() {
-
-	trackContact('Contact', result.name, result.email, result.phone);
-	$.ajax({
-		type: "GET",
-		url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(result) + "&c_p=" + customParam + "&utm_source="+utm_source+"&utm_medium="+utm_medium+"&utm_content="+utm_content+"&utm_campaign="+utm_campaign+"&utm_term="+utm_term,
-		async: false,
-		crossDomain: true,
-		success: function (data) {
-			setTimeout(function() {
-				window.location.href=obrigadoPage;
-			}, 1000);
-		},
-		error: function(data) {
-		//alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
-		setTimeout(function() {
-			window.location.href=obrigadoPage;
-		}, 1000);
-		}
-	});
 }

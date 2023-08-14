@@ -1,6 +1,6 @@
 const phoneInputField = document.querySelector("#phone-answer");
 const phoneInput = window.intlTelInput(phoneInputField, {
-	initialCountry: "br",
+	initialCountry: "auto",
 	utilsScript:
 	"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
@@ -32,7 +32,7 @@ for(const b of perfilButtons) {
 
 function goType(button) {
 	if(button.id == 'perfil-0') {
-		document.getElementById("question-type").innerText = "Qual tipo de estabelecimento deseja abrir?";
+		document.getElementById("question-type").innerText = "¿Qué tipo de establecimiento quieres abrir?";
 	}
 	document.querySelector('body').style.justifyContent = 'normal';
 	document.getElementById("perfil").classList.add("hide");
@@ -109,9 +109,6 @@ if(utm_source !== null) {
 	else if(utm_source.toLowerCase() == "goads") currentChannel = channelGoogle;
 }
 
-var obrigadoPage = 'obrigado.html';
-var customParam = qs.get('c_p');
-
 function send() {
 
 	$("#send").hide();
@@ -136,8 +133,8 @@ function send() {
 						{
 							"titulo": result.name,
 							"valor": 650,
-							"codigo_vendedor": 16343, //Neto: 57649 | Wildes: 16343,
-							"codigo_metodologia": 18043, //LATAM: 18959,
+							"codigo_vendedor": 57649, //Neto | Wildes: 16343,
+							"codigo_metodologia": 18959,
 							"codigo_canal_venda": currentChannel,
 							"personalizados": [
 								{
@@ -219,16 +216,13 @@ function send() {
 						//document.getElementById("end").classList.remove("hide");
 
 						//trackContact('Lead', name, email, phone);
-						
-						//zap(data);
-						result.codigoOportunidade = data.value[0].code;
-						botConversa();
+						zap(data);
 					},
 					error: function(data) {
 						document.getElementById("name").classList.remove("hide");
 						document.getElementById("sending").classList.add("hide");
 						$("#send").show();
-						alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
+						alert("Su solicitud no pudo ser enviada, por favor inténtelo de nuevo!");
 					}
 				});
 
@@ -238,16 +232,16 @@ function send() {
 			}
 			else {
 				if(phoneInput.isValidNumber()) {
-					alert("Por favor, informe seus dados corretamente!");
+					alert("¡Por favor ingrese sus datos correctamente!");
 				}
 				else {
-					alert("Por favor, informe o número do seu WhatsApp com DDD!");
+					alert("¡Por favor ingrese su número de WhatsApp correctamente!");
 				}
 				$("#send").show();
 			}
 		}
 		else {
-			alert("Por favor, informe seus dados!");
+			alert("Por favor ingrese sus datos!");
 			$("#send").show();
 		}
 	}, 1000);
@@ -256,40 +250,34 @@ function send() {
 
 function zap(data) {
 	
-	var message = "Olá! Sou " + result.name + ", " + result.perfil.toLowerCase() + ". Gostaria de mais informações.";
-	if(customParam != null) {
-		message += " " + customParam;
-	}
-	
-	window.open('https://wa.me/5511986598313?text=' + encodeURI(message));
-
+	var obrigadoPage = 'gracias.html';
 	trackContact('Contact', result.name, result.email, result.phone);
 
-	setTimeout(function() {
-		window.location.href=obrigadoPage;
-	}, 1000);
-	
-}
-
-
-function botConversa() {
-
-	trackContact('Contact', result.name, result.email, result.phone);
+	/*
 	$.ajax({
 		type: "GET",
 		url: "https://appdelivery.wabiz.com.br/mkt/send.php?p=" + JSON.stringify(result) + "&c_p=" + customParam + "&utm_source="+utm_source+"&utm_medium="+utm_medium+"&utm_content="+utm_content+"&utm_campaign="+utm_campaign+"&utm_term="+utm_term,
 		async: false,
 		crossDomain: true,
 		success: function (data) {
+			
 			setTimeout(function() {
 				window.location.href=obrigadoPage;
 			}, 1000);
 		},
 		error: function(data) {
-		//alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
-		setTimeout(function() {
+		  //alert("Não foi possível enviar sua solicitação, por favor, tente novamente!");
+		  setTimeout(function() {
 			window.location.href=obrigadoPage;
 		}, 1000);
 		}
 	});
+	*/
+
+	window.open("https://wa.me/5511947519926");
+
+	setTimeout(function() {
+		window.location.href=obrigadoPage;
+	}, 1000);
+	
 }
